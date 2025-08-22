@@ -1,0 +1,19 @@
+services:
+  lmcache-gptoss:
+    build:
+      context: .
+      dockerfile: Dockerfile.vllm-lmcache
+    container_name: lmcache-gptoss
+    ports:
+      - "${LMCACHE_PORT:-8000}:8000"
+    environment:
+      - MODEL_ID=${MODEL_ID:-openai/gpt-oss-20b}
+      - LMCACHE_PORT=8000
+    volumes:
+      - ./cache:/app/cache
+    restart: unless-stopped
+
+volumes:
+  cache:
+
+

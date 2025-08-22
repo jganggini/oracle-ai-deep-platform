@@ -1,0 +1,31 @@
+# Dockerfile simplificado para LMCache + GPT-OSS
+FROM python:3.11-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
+WORKDIR /app
+
+# Instalar dependencias del sistema
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git curl ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
+
+# Copiar requirements e instalar dependencias Python
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copiar código de la aplicación
+COPY . .
+
+# Exponer puerto de LMCache
+EXPOSE 8000
+
+# Variables de entorno
+ENV MODEL_ID=openai/gpt-oss-20b \
+    LMCACHE_PORT=8000
+
+# Comando simple para iniciar LMCache
+CMD ["python", "-m", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+
+

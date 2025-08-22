@@ -1,0 +1,11 @@
+# LMCache para caching de respuestas LLM
+lmcache
+
+# Dependencias básicas para LMCache
+fastapi
+uvicorn
+openai
+pydantic
+python-multipart
+
+

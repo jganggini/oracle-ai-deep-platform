@@ -1,0 +1,19 @@
+# MinerU y dependencias principales
+mineru[core]
+torch
+torchvision
+
+# FastAPI y servidor
+fastapi
+uvicorn
+python-multipart
+
+# Dependencias adicionales para MinerU
+opencv-python
+pillow
+numpy
+pandas
+requests
+pydantic
+pymupdf
+pytesseract

@@ -1,0 +1,31 @@
+services:
+  mineru:
+    build:
+      context: .
+      dockerfile: Dockerfile.mineru
+    container_name: mineru-ocr
+    ports:
+      - "${MINERU_PORT:-8001}:8000"
+    environment:
+      - GPU_ENABLED=${GPU_ENABLED:-true}
+      - VRAM_LIMIT=${VRAM_LIMIT:-20480}
+      - GPU_DEVICE=${GPU_DEVICE:-cuda}
+      - GPU_BACKEND=${GPU_BACKEND:-pipeline}
+      - MODEL_PATH=${MODEL_PATH:-/app/models}
+      - CACHE_DIR=${CACHE_DIR:-/app/cache}
+    volumes:
+      - ./models:/app/models
+      - ./cache:/app/cache
+      - ./data:/app/data
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+    runtime: nvidia
+    restart: unless-stopped
+
+volumes:
+  models:
+  cache:
+  data:
