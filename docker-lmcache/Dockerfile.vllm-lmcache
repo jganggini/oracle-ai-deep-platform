@@ -21,7 +21,7 @@ COPY . .
 # Exponer puerto de LMCache
 EXPOSE 8000
 
-# Variables de entorno
+# Variables de entorno por defecto (pueden ser sobrescritas por .env/compose)
 ENV MODEL_ID=openai/gpt-oss-20b \
     LMCACHE_PORT=8000
 

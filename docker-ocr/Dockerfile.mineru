@@ -25,7 +25,7 @@ COPY . .
 RUN mkdir -p /app/models /app/cache /app/data
 
 # Exponer puertos
-EXPOSE 8000 8001 8002
+EXPOSE 8000
 
 # Variables de entorno por defecto
 ENV GPU_ENABLED=true \

@@ -17,3 +17,8 @@ requests
 pydantic
 pymupdf
 pytesseract
+
+# Métricas y sistema
+prometheus-client
+psutil
+pynvml

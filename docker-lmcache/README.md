@@ -1,30 +1,42 @@
-# LMCache con GPT-OSS 20B
+# Stack de LMCache: GPT-OSS 20B
 
-Setup simple para instalar y ejecutar LMCache con el modelo GPT-OSS 20B usando Docker.
+## Características
+
+- Setup simple para instalar y ejecutar LMCache con el modelo GPT-OSS 20B usando Docker.
+
+## 🔧 Configuración
+
+### Configurar variables de entorno
+```bash
+cp env.example .env
+# Editar .env si es necesario (LMCACHE_PORT)
+```
+
+### Variables de Entorno (.env)
+```ini
+# Puerto LMCache API
+LMCACHE_PORT=8000
+```
 
 ## 🚀 Instalación Rápida
 
-### 1. Configurar variables de entorno
+### Construir y ejecutar - Primera vez
 ```bash
-cp env.example .env
-# Editar .env si es necesario
+docker compose up -d --build
 ```
 
-### 2. Construir y ejecutar
+### Siguientes veces
 ```bash
-# Construir imagen
-docker compose build
-
-# Ejecutar servicio
 docker compose up -d
 ```
 
-### 3. Verificar funcionamiento
+### Verificar funcionamiento
 ```bash
-# Verificar estado
 docker compose ps
+```
 
-# Probar endpoint
+### Probar endpoint
+```bash
 curl http://localhost:8000/
 ```
 
@@ -35,21 +47,10 @@ lmcache-gpt-oss/
 ├── main.py              # Aplicación FastAPI principal
 ├── requirements.txt     # Dependencias Python
 ├── Dockerfile.vllm-lmcache  # Dockerfile para LMCache
-├── docker-compose.yaml  # Configuración Docker
+├── docker-compose.yaml  # Configuración Docker (usa .env)
 ├── env.example         # Variables de entorno de ejemplo
 └── cache/              # Directorio para cache (se crea automáticamente)
 ```
-
-## 🔧 Configuración
-
-### Variables de Entorno (.env)
-```ini
-MODEL_ID=openai/gpt-oss-20b
-LMCACHE_PORT=8000
-```
-
-### Puertos
-- **8000**: LMCache API
 
 ## 📖 Uso
 
@@ -62,7 +63,7 @@ LMCACHE_PORT=8000
 
 #### PowerShell (Windows)
 ```powershell
-Invoke-WebRequest -Uri "http://localhost:8000/chat" -Method POST -Headers @{"Content-Type"="application/json"} -Body '{"messages":[{"role":"user","content":"Hola"}]}'
+Invoke-WebRequest -Uri "http://localhost:8000/chat" -Method POST -Headers @{"Content-Type"="application/json"} -Body '{"messages":[{"role": "user", "content":"Hola"}]}'
 ```
 
 #### Bash/Linux/macOS
@@ -71,7 +72,7 @@ curl -X POST "http://localhost:8000/chat" \
   -H "Content-Type: application/json" \
   -d '{
     "messages": [
-      {"role": "user", "content": "Hola, ¿cómo estás?"}
+      {"role":"user", "content":"Hola, ¿cómo estás?"}
     ]
   }'
 ```
@@ -98,19 +99,13 @@ docker compose down
 
 # Reconstruir después de cambios
 docker compose up -d --build
-```
 
-## 🔍 Troubleshooting
+# Verificar logs
+docker compose logs lmcache
 
-### Verificar logs
-```bash
-docker compose logs lmcache-gptoss
-```
-
-### Verificar estado del contenedor
-```bash
+# Verificar estado del contenedor
 docker compose ps
-docker exec -it lmcache-gptoss bash
+docker exec -it lmcache bash
 ```
 
 ## 📝 Notas

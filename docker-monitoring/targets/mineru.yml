@@ -1,0 +1,5 @@
+- labels:
+    job: mineru
+  targets:
+    - host.docker.internal:8001
+

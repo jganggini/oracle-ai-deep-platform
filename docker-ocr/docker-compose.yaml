@@ -3,16 +3,16 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.mineru
-    container_name: mineru-ocr
+    container_name: mineru
     ports:
       - "${MINERU_PORT:-8001}:8000"
     environment:
       - GPU_ENABLED=${GPU_ENABLED:-true}
-      - VRAM_LIMIT=${VRAM_LIMIT:-20480}
       - GPU_DEVICE=${GPU_DEVICE:-cuda}
       - GPU_BACKEND=${GPU_BACKEND:-pipeline}
       - MODEL_PATH=${MODEL_PATH:-/app/models}
       - CACHE_DIR=${CACHE_DIR:-/app/cache}
+      - METRICS_ENABLED=${METRICS_ENABLED:-true}
     volumes:
       - ./models:/app/models
       - ./cache:/app/cache

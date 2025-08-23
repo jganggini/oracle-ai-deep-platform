@@ -1,6 +1,6 @@
 # test-ocr.ps1
 
-$src = "C:\example\E54311224013702R001395301400.PDF"
+$src = "D:\Downloads\oci.adres.sia\example\E54311224013702R001395301400\E54311224013702R001395301400.PDF"
 
 $scenarios = @(
     @{ label = "2GB/10x"; vram = 2048; conc = 10; pref = "ocr_curl_2GB_10x" },
@@ -25,6 +25,10 @@ foreach ($s in $scenarios) {
             --output $out | Out-Null
 
         $sw.Stop()
+
+        # Verificar /health y /metrics en cada ciclo (ligero)
+        try { Invoke-WebRequest -UseBasicParsing -Uri "http://localhost:8001/health" -TimeoutSec 5 | Out-Null } catch {}
+        try { Invoke-WebRequest -UseBasicParsing -Uri "http://localhost:8001/metrics" -TimeoutSec 5 | Out-Null } catch {}
 
         $results += [PSCustomObject]@{
             Run      = $i
