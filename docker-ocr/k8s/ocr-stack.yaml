@@ -42,7 +42,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 20Gi  # Para modelos de MinerU
+      storage: 100Gi  # Para modelos de MinerU
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -54,7 +54,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 10Gi  # Para cache
+      storage: 100Gi  # Para cache
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -66,7 +66,7 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 5Gi  # Para datos de entrada
+      storage: 100Gi  # Para datos de entrada
 ---
 # Deployment del servicio OCR API (FastAPI)
 apiVersion: apps/v1
@@ -88,7 +88,7 @@ spec:
     spec:
       containers:
       - name: ocr-api
-        image: ocr-api:latest  # Imagen personalizada
+        image:  <region>.ocir.io/<tenancy-namespace>/mineru-api:latest # Imagen personalizada
         ports:
         - containerPort: 8000  # Puerto interno del contenedor (como en docker-compose)
         env:
@@ -160,12 +160,12 @@ spec:
           mountPath: /data
         resources:
           requests:
-            memory: "2Gi"
-            cpu: "1000m"
+            memory: "64Gi"
+            cpu: "4000m"
             nvidia.com/gpu: 1
           limits:
-            memory: "8Gi"
-            cpu: "2000m"
+            memory: "128Gi"
+            cpu: "8000m"
             nvidia.com/gpu: 1
         livenessProbe:
           httpGet:
@@ -193,51 +193,6 @@ spec:
         persistentVolumeClaim:
           claimName: ocr-data-pvc
 ---
-# Deployment de MinerU Gradio UI (opcional)
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: mineru-gradio
-  namespace: ocr
-  labels:
-    app: mineru-gradio
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: mineru-gradio
-  template:
-    metadata:
-      labels:
-        app: mineru-gradio
-    spec:
-      containers:
-      - name: mineru-gradio
-        image: lmsysorg/sglang:v0.4.9.post6-cu126
-        ports:
-        - containerPort: 7860
-        env:
-        - name: MINERU_MODEL_SOURCE
-          value: "local"
-        command:
-        - mineru-gradio
-        args:
-        - --server-name
-        - 0.0.0.0
-        - --server-port
-        - "7860"
-        - --enable-sglang-engine
-        - "true"
-        resources:
-          requests:
-            memory: "1Gi"
-            cpu: "500m"
-            nvidia.com/gpu: 1
-          limits:
-            memory: "4Gi"
-            cpu: "1000m"
-            nvidia.com/gpu: 1
----
 # Services para ambos deployments
 apiVersion: v1
 kind: Service
@@ -250,22 +205,15 @@ spec:
   ports:
   - port: 8000
     targetPort: 8000
-    nodePort: 30001  # Puerto del host (equivalente al 8001 de docker-compose)
-  type: NodePort
+  type: LoadBalancer
 ---
-apiVersion: v1
-kind: Service
+# IngressClass para especificar el controlador nginx
+apiVersion: networking.k8s.io/v1
+kind: IngressClass
 metadata:
-  name: mineru-gradio-service
-  namespace: ocr
+  name: nginx
 spec:
-  selector:
-    app: mineru-gradio
-  ports:
-  - port: 7860
-    targetPort: 7860
-    nodePort: 30786
-  type: NodePort
+  controller: k8s.io/ingress-nginx
 ---
 # Ingress para acceso externo (opcional)
 apiVersion: networking.k8s.io/v1
@@ -276,7 +224,9 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/proxy-body-size: "100m"  # Para archivos grandes
+    kubernetes.io/ingress.class: nginx
 spec:
+  ingressClassName: nginx
   rules:
   - host: ocr.local
     http:
@@ -288,13 +238,3 @@ spec:
             name: ocr-api-service
             port:
               number: 8000
-  - host: gradio.local
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: mineru-gradio-service
-            port:
-              number: 7860
