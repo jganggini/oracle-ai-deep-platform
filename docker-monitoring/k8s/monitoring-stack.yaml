@@ -162,6 +162,7 @@ spec:
         ports:
         - containerPort: 3000
         env:
+        # Credenciales de Grafana (solo para desarrollo) - según env.example
         - name: GF_SECURITY_ADMIN_USER
           value: "admin"
         - name: GF_SECURITY_ADMIN_PASSWORD
@@ -200,7 +201,7 @@ spec:
   ports:
   - port: 9090
     targetPort: 9090
-    nodePort: 30090
+    nodePort: 30002  # Puerto del host (equivalente al 8002 de docker-compose)
   type: NodePort
 ---
 apiVersion: v1
@@ -214,7 +215,7 @@ spec:
   ports:
   - port: 3000
     targetPort: 3000
-    nodePort: 30091
+    nodePort: 30003  # Puerto del host (equivalente al 8003 de docker-compose)
   type: NodePort
 ---
 # Ingress para acceso externo (opcional)

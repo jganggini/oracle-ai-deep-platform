@@ -1,0 +1,300 @@
+---
+# Namespace para el stack OCR
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: ocr
+---
+# ConfigMap para variables de entorno (corregido según docker-compose)
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ocr-config
+  namespace: ocr
+data:
+  # GPU
+  GPU_ENABLED: "true"
+  GPU_DEVICE: "cuda"
+  GPU_BACKEND: "pipeline"
+  MINERU_VRAM_PER_WORKER_MB: "768"
+  
+  # Métricas (Prometheus expuestas en el mismo puerto 8000)
+  METRICS_ENABLED: "true"
+  
+  # Optimizaciones de hilos para evitar contención
+  OMP_NUM_THREADS: "1"
+  MKL_NUM_THREADS: "1"
+  OPENBLAS_NUM_THREADS: "1"
+  NUMEXPR_NUM_THREADS: "1"
+  
+  # Configuración de caché y modelos
+  CACHE_DIR: "/cache"
+  MODEL_PATH: "/models"
+---
+# Persistent Volume Claims para datos persistentes
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ocr-models-pvc
+  namespace: ocr
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi  # Para modelos de MinerU
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ocr-cache-pvc
+  namespace: ocr
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi  # Para cache
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ocr-data-pvc
+  namespace: ocr
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi  # Para datos de entrada
+---
+# Deployment del servicio OCR API (FastAPI)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ocr-api
+  namespace: ocr
+  labels:
+    app: ocr-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ocr-api
+  template:
+    metadata:
+      labels:
+        app: ocr-api
+    spec:
+      containers:
+      - name: ocr-api
+        image: ocr-api:latest  # Imagen personalizada
+        ports:
+        - containerPort: 8000  # Puerto interno del contenedor (como en docker-compose)
+        env:
+        # GPU
+        - name: GPU_ENABLED
+          valueFrom:
+            configMapKeyRef:
+              name: ocr-config
+              key: GPU_ENABLED
+        - name: GPU_DEVICE
+          valueFrom:
+            configMapKeyRef:
+              name: ocr-config
+              key: GPU_DEVICE
+        - name: GPU_BACKEND
+          valueFrom:
+            configMapKeyRef:
+              name: ocr-config
+              key: GPU_BACKEND
+        - name: MINERU_VRAM_PER_WORKER_MB
+          valueFrom:
+            configMapKeyRef:
+              name: ocr-config
+              key: MINERU_VRAM_PER_WORKER_MB
+        # Métricas
+        - name: METRICS_ENABLED
+          valueFrom:
+            configMapKeyRef:
+              name: ocr-config
+              key: METRICS_ENABLED
+        # Optimizaciones de hilos
+        - name: OMP_NUM_THREADS
+          valueFrom:
+            configMapKeyRef:
+              name: ocr-config
+              key: OMP_NUM_THREADS
+        - name: MKL_NUM_THREADS
+          valueFrom:
+            configMapKeyRef:
+              name: ocr-config
+              key: MKL_NUM_THREADS
+        - name: OPENBLAS_NUM_THREADS
+          valueFrom:
+            configMapKeyRef:
+              name: ocr-config
+              key: OPENBLAS_NUM_THREADS
+        - name: NUMEXPR_NUM_THREADS
+          valueFrom:
+            configMapKeyRef:
+              name: ocr-config
+              key: NUMEXPR_NUM_THREADS
+        # Configuración de caché y modelos
+        - name: CACHE_DIR
+          valueFrom:
+            configMapKeyRef:
+              name: ocr-config
+              key: CACHE_DIR
+        - name: MODEL_PATH
+          valueFrom:
+            configMapKeyRef:
+              name: ocr-config
+              key: MODEL_PATH
+        volumeMounts:
+        - name: models-storage
+          mountPath: /models
+        - name: cache-storage
+          mountPath: /cache
+        - name: data-storage
+          mountPath: /data
+        resources:
+          requests:
+            memory: "2Gi"
+            cpu: "1000m"
+            nvidia.com/gpu: 1
+          limits:
+            memory: "8Gi"
+            cpu: "2000m"
+            nvidia.com/gpu: 1
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 60
+          periodSeconds: 30
+          timeoutSeconds: 5
+          failureThreshold: 5
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+      volumes:
+      - name: models-storage
+        persistentVolumeClaim:
+          claimName: ocr-models-pvc
+      - name: cache-storage
+        persistentVolumeClaim:
+          claimName: ocr-cache-pvc
+      - name: data-storage
+        persistentVolumeClaim:
+          claimName: ocr-data-pvc
+---
+# Deployment de MinerU Gradio UI (opcional)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mineru-gradio
+  namespace: ocr
+  labels:
+    app: mineru-gradio
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mineru-gradio
+  template:
+    metadata:
+      labels:
+        app: mineru-gradio
+    spec:
+      containers:
+      - name: mineru-gradio
+        image: lmsysorg/sglang:v0.4.9.post6-cu126
+        ports:
+        - containerPort: 7860
+        env:
+        - name: MINERU_MODEL_SOURCE
+          value: "local"
+        command:
+        - mineru-gradio
+        args:
+        - --server-name
+        - 0.0.0.0
+        - --server-port
+        - "7860"
+        - --enable-sglang-engine
+        - "true"
+        resources:
+          requests:
+            memory: "1Gi"
+            cpu: "500m"
+            nvidia.com/gpu: 1
+          limits:
+            memory: "4Gi"
+            cpu: "1000m"
+            nvidia.com/gpu: 1
+---
+# Services para ambos deployments
+apiVersion: v1
+kind: Service
+metadata:
+  name: ocr-api-service
+  namespace: ocr
+spec:
+  selector:
+    app: ocr-api
+  ports:
+  - port: 8000
+    targetPort: 8000
+    nodePort: 30001  # Puerto del host (equivalente al 8001 de docker-compose)
+  type: NodePort
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mineru-gradio-service
+  namespace: ocr
+spec:
+  selector:
+    app: mineru-gradio
+  ports:
+  - port: 7860
+    targetPort: 7860
+    nodePort: 30786
+  type: NodePort
+---
+# Ingress para acceso externo (opcional)
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ocr-ingress
+  namespace: ocr
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/proxy-body-size: "100m"  # Para archivos grandes
+spec:
+  rules:
+  - host: ocr.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: ocr-api-service
+            port:
+              number: 8000
+  - host: gradio.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: mineru-gradio-service
+            port:
+              number: 7860
