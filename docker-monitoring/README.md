@@ -48,7 +48,24 @@ docker compose up -d --build
 
 ### 2. Siguientes veces
 ```bash
+# Cambios en el dashboard JSON de grafana.
+docker compose restart grafana
+
+# Cambios en configuración de Grafana (provisioning, datasources)
+docker compose build grafana
+docker compose up -d grafana
+
+# Cambios en prometheus.yml (configuración global)
+# Cambios en targets dinámicos (targets/*.yml)
+docker compose restart prometheus
+
+# Cambios en docker-compose.yaml o variables de entorno
+docker compose down
 docker compose up -d
+
+# Cambios en plugins o extensiones de Grafana
+docker compose build --no-cache grafana
+docker compose up -d grafana
 ```
 
 ### 3. Verificar funcionamiento

@@ -5,7 +5,7 @@ from starlette.background import BackgroundTask
 from pathlib import Path
 import tempfile, os, asyncio, time, shutil, datetime
 from ..config import get_settings
-from ..metrics import REQ_TOTAL, REQ_LAT, BYTES_UP, PAGES_TOTAL, OCR_INFLIGHT, PAGES_ACTIVE, DOC_LAST
+from app.metrics import BYTES_UP, OCR_INFLIGHT, PAGES_ACTIVE, DOC_LAST
 from .mineru_runner import (
     run_mineru,
     split_pdf_to_pages,
@@ -22,22 +22,33 @@ router = APIRouter()
 @router.post("/ocr")
 async def ocr_endpoint(
     request: Request,
-    file: UploadFile | None = File(None),
-    raw: bytes | None = Body(None),
-    vram_limit: int = Form(..., ge=256),
-    concurrency: int = Form(..., ge=1),
-    use_gpu: bool = Form(True),
+    file: UploadFile | None = File(None),  # PDF vía multipart (opcional)
+    raw: bytes | None = Body(None),        # PDF en bytes crudos (alternativa)
+    vram_limit: int = Form(..., ge=256),   # VRAM total asignada (MB)
+    concurrency: int = Form(..., ge=1),    # procesos paralelos solicitados
+    use_gpu: bool = Form(True),            # mantenido por compatibilidad
     device: str = Form("cuda"),
     backend: str = Form("pipeline"),
 ):
+    """Procesa un PDF página a página usando MinerU con control de concurrencia.
+
+    Pasos:
+    1) Recibe archivo (multipart) o bytes crudos y los guarda temporalmente
+    2) Divide el PDF en páginas individuales
+    3) Ejecuta MinerU por página con semáforo de concurrencia limitado por VRAM
+    4) Reconstruye un ZIP con upload.md e imágenes reescritas
+    5) Actualiza métricas y devuelve el ZIP resultante
+    """
+
     settings = get_settings()
     t0 = time.perf_counter(); status = "200"
     try:
         OCR_INFLIGHT.inc()
+        # Directorio de trabajo temporal por request
         with tempfile.TemporaryDirectory() as tmpdir:
             tmpdir_path = Path(tmpdir)
             in_filename = "upload.pdf"
-            if file is not None:
+            if file is not None:  # camino multipart
                 if file.filename and file.filename.lower().endswith(".pdf"):
                     in_filename = Path(file.filename).name
                 in_path = tmpdir_path / in_filename
@@ -48,7 +59,7 @@ async def ocr_endpoint(
                         if not chunk: break
                         total += len(chunk); fout.write(chunk)
                 BYTES_UP.inc(total)
-            else:
+            else:  # camino raw bytes en body
                 data_bytes = raw if raw is not None else await request.body()
                 if not data_bytes:
                     status = "400"; raise HTTPException(400, "No se recibió archivo")
@@ -59,8 +70,7 @@ async def ocr_endpoint(
             pages = split_pdf_to_pages(in_path, pages_src_dir)
             if not pages:
                 status = "500"; raise HTTPException(500, "No se pudieron generar páginas del PDF")
-            PAGES_TOTAL.inc(len(pages))
-            PAGES_ACTIVE.set(len(pages))
+            PAGES_ACTIVE.set(len(pages))  # gauge de progreso
 
             final_root = tmpdir_path / "final"; final_pages = final_root / "pages"; images_dir = final_root / "images"
             final_root.mkdir(parents=True, exist_ok=True); final_pages.mkdir(parents=True, exist_ok=True)
@@ -91,6 +101,7 @@ async def ocr_endpoint(
                     if annotated is None: annotated = ""
                     return (pnum, annotated)
 
+            # Ejecuta tareas de páginas respetando el semáforo
             results = await asyncio.gather(*[process_one(p, pdf) for p, pdf in pages])
             parts: list[str] = []
             for pnum, md in sorted(results, key=lambda x: x[0]):
@@ -104,14 +115,20 @@ async def ocr_endpoint(
     except Exception:
         status = "500"; raise
     finally:
+        # Telemetría por request (para tabla en Grafana)
         duration = time.perf_counter() - t0
         processed_at = datetime.datetime.utcnow().isoformat(timespec="seconds") + "Z"
         pages_count = len(pages) if 'pages' in locals() else 0
         name = in_filename if 'in_filename' in locals() else "upload.pdf"
         try:
-            DOC_LAST.labels(name=name, pages=str(pages_count), processed_at=processed_at).set(duration)
+            DOC_LAST.labels(
+                name=name,
+                pages=str(pages_count),
+                processed_at=processed_at,
+                vram=str(vram_limit),
+                concurrency=str(concurrency),
+            ).set(duration)
         except Exception:
             pass
         PAGES_ACTIVE.set(0)
-        REQ_TOTAL.labels(endpoint="/ocr", status=status).inc(); REQ_LAT.labels(endpoint="/ocr").observe(duration)
         OCR_INFLIGHT.dec()

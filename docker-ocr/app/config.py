@@ -5,9 +5,6 @@ from dataclasses import dataclass
 
 @dataclass(frozen=True)
 class Settings:
-    # API
-    api_port: int = int(os.getenv("MINERU_PORT", "8000"))
-
     # GPU
     gpu_enabled: bool = True
     gpu_device: str = os.getenv("GPU_DEVICE", "cuda")

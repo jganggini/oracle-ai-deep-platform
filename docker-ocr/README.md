@@ -43,6 +43,24 @@ docker compose up -d --build
 
 ### 2. Siguientes veces
 ```bash
+# Cambios en código Python (FastAPI, endpoints, lógica)
+docker compose restart ocr-api
+
+# Cambios en requirements.txt o dependencias
+docker compose build ocr-api
+docker compose up -d ocr-api
+
+# Cambios en Dockerfile o configuración de imagen
+docker compose build --no-cache ocr-api # Reconstruir completamente
+docker compose up -d ocr-api
+
+# Cambios en docker-compose.yaml o variables de entorno
+docker compose down
+docker compose up -d
+
+# Cambios en modelos o configuración de MinerU
+docker compose down -v  # Limpiar volúmenes
+docker compose build --no-cache ocr-api
 docker compose up -d
 ```
 
@@ -68,7 +86,7 @@ docker-ocr/
 ├── models/             # Directorio para modelos (se crea automáticamente)
 ├── cache/              # Directorio para cache (se crea automáticamente)
 ├── data/               # Directorio para archivos de entrada (se crea automáticamente)
-└── _test/              # Scripts de prueba
+└── _tests/             # Scripts de prueba
     ├── test-ocr.ps1   # PowerShell (Windows)
     └── test-ocr.sh    # Bash (Linux/macOS)
 ```

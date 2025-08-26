@@ -30,14 +30,24 @@
       ],
       "transformations": [
         {"id": "filterFieldsByName", "options": {"include": {
-          "names": ["name", "Value", "pages", "processed_at"]}}},
+          "names": ["name", "pages", "vram", "concurrency", "Value", "processed_at"]}}},
         {"id": "organize", "options": {
           "renameByName": {
             "name": "Documento",
-            "Value": "Duración (s)",
             "pages": "Páginas",
-            "processed_at": "Procesado (UTC)"},
-          "indexByName": {"Documento": 0, "Duración (s)": 1, "Páginas": 2, "Procesado (UTC)": 3}
+            "vram": "VRAM (MB)",
+            "concurrency": "Concurrency",
+            "Value": "Duración (s)",
+            "processed_at": "Procesado (UTC)"
+          },
+          "indexByName": {
+            "Documento": 0,
+            "Páginas": 1,
+            "VRAM (MB)": 2,
+            "Concurrency": 3,
+            "Duración (s)": 4,
+            "Procesado (UTC)": 5
+          }
         }}
       ]
     }

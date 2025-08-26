@@ -2,33 +2,36 @@ from __future__ import annotations
 import time
 import threading
 import psutil
-from prometheus_client import Counter, Histogram, Gauge, generate_latest, CONTENT_TYPE_LATEST
+from prometheus_client import Counter, Gauge, generate_latest, CONTENT_TYPE_LATEST
 
-try:
-    import pynvml
-    pynvml.nvmlInit()
-    HAS_GPU = True
-except Exception:
-    HAS_GPU = False
+# Asumimos GPU siempre disponible (simplifica la lógica y evita ramas muertas)
+import pynvml  # type: ignore
+pynvml.nvmlInit()
 
-REQ_TOTAL = Counter("ocr_requests_total", "Total de requests", ["endpoint", "status"])
-REQ_LAT = Histogram("ocr_request_seconds", "Latencia de requests (s)", ["endpoint"])
-PAGES_TOTAL = Counter("ocr_pages_processed_total", "Páginas procesadas")
-BYTES_UP = Counter("ocr_bytes_uploaded_total", "Bytes subidos")
+# =============================
+# Métricas expuestas (Grafana)
+# =============================
+
+# Sistema
 SYS_CPU = Gauge("system_cpu_usage_percent", "CPU %")
 SYS_RAM = Gauge("system_ram_usage_percent", "RAM %")
+
+# GPU (por índice)
+GPU_USED = Gauge("gpu_memory_used_bytes", "GPU mem used (bytes)", ["index"])
+GPU_TOTAL = Gauge("gpu_memory_total_bytes", "GPU mem total (bytes)", ["index"])
+GPU_USED_PCT = Gauge("gpu_memory_used_percent", "GPU mem usada %", ["index"])
+
+# OCR flujo
 OCR_INFLIGHT = Gauge("ocr_inflight_requests", "Requests en proceso")
 PAGES_ACTIVE = Gauge("ocr_pages_in_progress", "Páginas en procesamiento")
-# Resumen del último documento procesado: valor = duración (s)
-DOC_LAST = Gauge("ocr_last_document_seconds", "Duración del último documento (s)", ["name", "pages", "processed_at"])
-if HAS_GPU:
-    GPU_USED = Gauge("gpu_memory_used_bytes", "GPU mem used", ["index"])
-    GPU_TOTAL = Gauge("gpu_memory_total_bytes", "GPU mem total", ["index"])
-    GPU_USED_PCT = Gauge("gpu_memory_used_percent", "GPU mem %", ["index"])
-else:
-    GPU_USED = None
-    GPU_TOTAL = None
-    GPU_USED_PCT = None
+BYTES_UP = Counter("ocr_bytes_uploaded_total", "Bytes subidos")
+
+# Último documento procesado (valor = duración en segundos)
+DOC_LAST = Gauge(
+    "ocr_last_document_seconds",
+    "Duración del último documento (s)",
+    ["name", "pages", "processed_at", "vram", "concurrency"],
+)
 
 
 def start_metrics_collector() -> None:
@@ -37,15 +40,20 @@ def start_metrics_collector() -> None:
 
 
 def init_metric_series() -> None:
-    try:
-        # Inicializa series para evitar "No data" en Grafana
-        for status in ("200", "400", "500"):
-            REQ_TOTAL.labels(endpoint="/ocr", status=status).inc(0)
-        REQ_LAT.labels(endpoint="/ocr").observe(0)
-        PAGES_TOTAL.inc(0)
-        BYTES_UP.inc(0)
-    except Exception:
-        pass
+    # Inicializa series para evitar "No data" en Grafana
+    BYTES_UP.inc(0)
+    OCR_INFLIGHT.set(0)
+    PAGES_ACTIVE.set(0)
+
+    # Inicializa métricas por GPU
+    count = pynvml.nvmlDeviceGetCount()
+    for i in range(count):
+        idx = str(i)
+        h = pynvml.nvmlDeviceGetHandleByIndex(i)
+        m = pynvml.nvmlDeviceGetMemoryInfo(h)
+        GPU_USED.labels(index=idx).set(0)
+        GPU_TOTAL.labels(index=idx).set(m.total)
+        GPU_USED_PCT.labels(index=idx).set(0)
 
 
 def get_metrics_latest() -> bytes:
@@ -58,18 +66,22 @@ def get_metrics_content_type() -> str:
 
 def _loop() -> None:
     while True:
-        try:
-            SYS_CPU.set(psutil.cpu_percent(interval=None))
-            SYS_RAM.set(psutil.virtual_memory().percent)
-            if HAS_GPU:
-                count = pynvml.nvmlDeviceGetCount()
-                for i in range(count):
-                    h = pynvml.nvmlDeviceGetHandleByIndex(i)
-                    m = pynvml.nvmlDeviceGetMemoryInfo(h)
-                    GPU_USED.labels(index=str(i)).set(m.used)
-                    GPU_TOTAL.labels(index=str(i)).set(m.total)
-                    if m.total:
-                        GPU_USED_PCT.labels(index=str(i)).set((m.used / m.total) * 100.0)
-        except Exception:
-            pass
+        # CPU / RAM
+        cpu_pct = psutil.cpu_percent(interval=None)
+        ram_pct = psutil.virtual_memory().percent
+        SYS_CPU.set(cpu_pct)
+        SYS_RAM.set(ram_pct)
+
+        # GPU por índice – porcentaje preciso usado/total
+        count = pynvml.nvmlDeviceGetCount()
+        for i in range(count):
+            idx = str(i)
+            h = pynvml.nvmlDeviceGetHandleByIndex(i)
+            m = pynvml.nvmlDeviceGetMemoryInfo(h)
+            used = float(m.used)
+            total = float(m.total) if m.total else 0.0
+            GPU_USED.labels(index=idx).set(used)
+            GPU_TOTAL.labels(index=idx).set(total)
+            GPU_USED_PCT.labels(index=idx).set((used / total) * 100.0 if total > 0 else 0.0)
+
         time.sleep(5)
