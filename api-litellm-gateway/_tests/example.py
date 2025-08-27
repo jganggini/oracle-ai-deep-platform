@@ -8,7 +8,7 @@ print("=" * 50)
 
 llm_local = ChatOpenAI(
     model="xai.grok-4",
-    api_key="oci-0KBMBRvyShvvylKXQX4S6wkplfVarQvRRuFUB3i9h9sdBYCviyVePg6YcR5GukOy6xwe3yDo8wSJlF7WCbbEt7qp4vvRdXnLidHGGdu0pkHPWuhWcMPqo0EATGiyZ3fn",
+    api_key="oci-***",
     base_url="http://localhost:4000/litellm/oci/v1",
     temperature=0,
 )

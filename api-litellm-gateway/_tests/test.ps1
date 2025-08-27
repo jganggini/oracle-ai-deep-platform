@@ -2,7 +2,7 @@
 
 $base = "http://localhost:4000/litellm/oci/v1"
 # Debe coincidir con API_KEY en .env del gateway
-$apiKey = "oci-0KBMBRvyShvvylKXQX4S6wkplfVarQvRRuFUB3i9h9sdBYCviyVePg6YcR5GukOy6xwe3yDo8wSJlF7WCbbEt7qp4vvRdXnLidHGGdu0pkHPWuhWcMPqo0EATGiyZ3fn"
+$apiKey = "oci-***"
 
 $headers = @{ Authorization = "Bearer $apiKey" }
 $body = @{
