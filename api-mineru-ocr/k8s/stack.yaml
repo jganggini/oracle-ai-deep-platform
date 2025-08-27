@@ -74,7 +74,7 @@ spec:
         - name: GPU_BACKEND
           value: "pipeline"
         - name: MINERU_VRAM_PER_WORKER_MB
-          value: "768"
+          value: "1024"
         # Métricas
         - name: METRICS_ENABLED
           value: "true"

@@ -26,6 +26,7 @@ async def ocr_endpoint(
     raw: bytes | None = Body(None),        # PDF en bytes crudos (alternativa)
     vram_limit: int = Form(..., ge=256),   # VRAM total asignada (MB)
     concurrency: int = Form(..., ge=1),    # procesos paralelos solicitados
+    per_worker_mb: int | None = Form(None, ge=256),  # opcional: VRAM por worker (MB)
 ):
     """Procesa un PDF página a página usando MinerU con control de concurrencia.
 
@@ -72,7 +73,7 @@ async def ocr_endpoint(
             final_root = tmpdir_path / "final"; final_pages = final_root / "pages"; images_dir = final_root / "images"
             final_root.mkdir(parents=True, exist_ok=True); final_pages.mkdir(parents=True, exist_ok=True)
 
-            per_worker = settings.MINERU_VRAM_PER_WORKER_MB
+            per_worker = per_worker_mb if per_worker_mb is not None else settings.MINERU_VRAM_PER_WORKER_MB
             allowed_by_vram = (vram_limit // per_worker) if settings.GPU_ENABLED else concurrency
             if allowed_by_vram < 1:
                 status = "400"; raise HTTPException(400, f"VRAM insuficiente para 1 worker (per_worker={per_worker}MB)")
