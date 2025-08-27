@@ -75,7 +75,7 @@ spec:
         - --max-model-len
         - "32768"
         - --tensor-parallel-size
-        - "3"                       # igual al número de GPU solicitadas
+        - "2"
         - --gpu-memory-utilization
         - "0.90"
         - --disable-hybrid-kv-cache-manager
@@ -87,11 +87,11 @@ spec:
           requests:
             cpu: "10000m" # 10 vCPU
             memory: "112Gi"
-            nvidia.com/gpu: 3
+            nvidia.com/gpu: 2
           limits:
             cpu: "20000m" # 20 vCPU
             memory: "224Gi"
-            nvidia.com/gpu: 3
+            nvidia.com/gpu: 2
       imagePullSecrets:
       - name: ocirsecret
       volumes:
