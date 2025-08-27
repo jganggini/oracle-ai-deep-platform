@@ -1,0 +1,68 @@
+{
+  "annotations": {"list": []},
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "type": "text",
+      "title": "",
+      "gridPos": {"x": 0, "y": 0, "w": 24, "h": 2},
+      "options": {"mode": "markdown", "content": "## MinerU OCR - Reporte de Monitoreo"}
+    },
+    {"type": "gauge", "title": "CPU uso % (instant)", "gridPos": {"x": 0, "y": 3, "w": 8, "h": 4}, "options": {"reduceOptions": {"calcs": ["lastNotNull"], "fields": ""}}, "targets": [{"expr": "system_cpu_usage_percent", "legendFormat": "cpu%"}]},
+    {"type": "gauge", "title": "RAM uso % (instant)", "gridPos": {"x": 8, "y": 3, "w": 8, "h": 4}, "options": {"reduceOptions": {"calcs": ["lastNotNull"], "fields": ""}}, "targets": [{"expr": "system_ram_usage_percent", "legendFormat": "ram%"}]},
+    {"type": "gauge", "title": "GPU mem % (instant)", "gridPos": {"x": 16, "y": 3, "w": 8, "h": 4}, "options": {"reduceOptions": {"calcs": ["lastNotNull"], "fields": ""}}, "targets": [{"expr": "sum(gpu_memory_used_percent)", "legendFormat": "gpu%"}]},
+    {"type": "stat", "title": "OCR en proceso", "gridPos": {"x": 0, "y": 7, "w": 12, "h": 4}, "options": {"reduceOptions": {"calcs": ["lastNotNull"], "fields": ""}}, "targets": [{"expr": "ocr_inflight_requests", "legendFormat": "inflight"}]},
+    {"type": "stat", "title": "Páginas OCR en progreso", "gridPos": {"x": 12, "y": 7, "w": 12, "h": 4}, "options": {"reduceOptions": {"calcs": ["lastNotNull"], "fields": ""}}, "targets": [{"expr": "ocr_pages_in_progress", "legendFormat": "pages"}]},
+    {"type": "timeseries", "title": "GPU Mem Usada (MiB)", "gridPos": {"x": 0, "y": 19, "w": 12, "h": 8}, "targets": [{"expr": "sum by (index) (gpu_memory_used_bytes) / 1024 / 1024", "legendFormat": "GPU {{index}}"}]},
+    {"type": "timeseries", "title": "Bytes Subidos (por segundo)", "gridPos": {"x": 12, "y": 11, "w": 12, "h": 8}, "targets": [{"expr": "sum(rate(ocr_bytes_uploaded_total[5m]))", "legendFormat": "upload/s"}]},
+    {
+      "type": "table",
+      "title": "Documentos Procesados",
+      "gridPos": {"x": 12, "y": 19, "w": 24, "h": 8},
+      "options": {"showHeader": true},
+      "targets": [
+        {"expr": "ocr_last_document_seconds", "instant": true, "format": "table"}
+      ],
+      "transformations": [
+        {"id": "filterFieldsByName", "options": {"include": {
+          "names": ["name", "pages", "vram", "concurrency", "Value", "processed_at"]}}},
+        {"id": "organize", "options": {
+          "renameByName": {
+            "name": "Documento",
+            "pages": "Páginas",
+            "vram": "VRAM (MB)",
+            "concurrency": "Concurrency",
+            "Value": "Duración (s)",
+            "processed_at": "Procesado (UTC)"
+          },
+          "indexByName": {
+            "Documento": 0,
+            "Páginas": 1,
+            "VRAM (MB)": 2,
+            "Concurrency": 3,
+            "Duración (s)": 4,
+            "Procesado (UTC)": 5
+          }
+        }}
+      ]
+    }
+  ],
+  "refresh": "10s",
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": ["mineru","ocr"],
+  "templating": {"list": []},
+  "time": {"from": "now-6h", "to": "now"},
+  "timepicker": {},
+  "timezone": "",
+  "title": "MinerU - Overview",
+  "uid": "mineru-overview",
+  "version": 1,
+  "weekStart": ""
+}
+

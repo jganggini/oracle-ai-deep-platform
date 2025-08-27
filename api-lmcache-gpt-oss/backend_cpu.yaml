@@ -1,0 +1,6 @@
+# LMCache: CPU+Disco, orientado a producción en máquina única
+chunk_size: 256               # tamaño de chunk KV; 256 es un buen punto de partida
+local_cpu: True               # habilita offload en RAM de CPU
+max_local_cpu_size: 24        # GB de buffer en CPU (ver guía LMCache)
+local_disk: /lmcache-data     # ruta de caché en disco (montada como volumen)
+max_local_disk_size: 100      # GB de caché en disco (ajusta según tu storage)

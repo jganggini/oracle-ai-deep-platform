@@ -1,0 +1,32 @@
+services:
+  # Servicio OCR API (wrapper FastAPI) que orquesta MinerU por CLI
+  mineru:
+    build:
+      context: .
+      dockerfile: Dockerfile.mineru
+    container_name: mineru
+    restart: unless-stopped
+    ports:
+      - "8001:8000"  # host:container
+    environment:
+      - GPU_ENABLED=true
+      - GPU_DEVICE=cuda
+      - GPU_BACKEND=pipeline
+      - MODEL_PATH=/models
+      - CACHE_DIR=/cache
+      - METRICS_ENABLED=true
+      - MINERU_VRAM_PER_WORKER_MB=768
+      - OMP_NUM_THREADS=1
+      - MKL_NUM_THREADS=1
+      - OPENBLAS_NUM_THREADS=1
+      - NUMEXPR_NUM_THREADS=1
+    volumes:
+      - ./models:/models
+      - ./cache:/cache
+      - ./data:/data
+    gpus: all
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:8000/health || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 5

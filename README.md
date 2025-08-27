@@ -4,38 +4,68 @@
 
 - OCR de alta precisión con MinerU (GPU) y API FastAPI
 - Monitoreo en tiempo real con Prometheus + Grafana (dashboard provisionado)
-- LMCache gateway (OpenAI-compatible) para futuros agentes/LLMs
+- Gateway LMCache (OpenAI-compatible) para agentes/LLMs locales
 
 ## 🔧 Requisitos
 
 - Docker Desktop (Windows) con WSL2
 - NVIDIA GPU + NVIDIA Container Toolkit (si usarás GPU)
-- Puertos por defecto: 8001 (OCR), 8002 (Prometheus), 8003 (Grafana)
+- Puertos por defecto:
+  - 8000 (LMCache)
+  - 8001 (OCR)
+  - 8002 (Prometheus)
+  - 8003 (Grafana)
 
-## 🚀 Flujo de despliegue recomendado
+## 🚀 Despliegue rápido (Docker)
 
-### docker-lmcache (LLM para Agentes)
+### api-mineru-ocr (MinerU OCR)
+- Endpoints:
+  - `http://localhost:8001/`
+  - `http://localhost:8001/metrics`
+- Ejecutar:
+```bash
+cd api-mineru-ocr
+docker compose up -d --build
+```
 
-- http://localhost:8000/
+### api-monitoring (Prometheus + Grafana)
+- Endpoints:
+  - Prometheus: `http://localhost:8002/targets`
+  - Grafana: `http://localhost:8003/` (admin/admin por defecto)
+- Ejecutar:
+```bash
+cd api-monitoring
+docker compose up -d --build
+```
 
-### docker-ocr (MinerU OCR)
+### api-lmcache-gpt-oss (LMCache)
+- Endpoint: `http://localhost:8000/`
+- Ejecutar:
+```bash
+cd api-lmcache-gpt-oss
+docker compose up -d --build
+```
 
-- `http://localhost:8001/`
-- `http://localhost:8001/metrics`
+## ☸️ Despliegue en Kubernetes (opcional)
 
-### docker-monitoring (Prometheus + Grafana)
+```bash
+# MinerU OCR
+kubectl apply -f api-mineru-ocr/k8s/stack.yaml
 
-- Prometheus: `http://localhost:8002/targets`
-- Grafana: `http://localhost:8003/` (admin/admin)
+# Monitoring (Prometheus + Grafana)
+kubectl apply -f api-monitoring/k8s/stack.yaml
 
+# LMCache
+kubectl apply -f api-lmcache-gpt-oss/k8s/stack.yaml
+```
 
 ## 📁 Estructura del repositorio
 ```
 .
-├── docker-ocr/           # OCR MinerU (FastAPI)
-├── docker-monitoring/    # Prometheus + Grafana provisionado
-├── docker-lmcache/       # LMCache (opcional)
-└── README.md             # Este documento
+├── api-mineru-ocr/        # OCR MinerU (FastAPI)
+├── api-monitoring/        # Prometheus + Grafana provisionado
+├── api-lmcache-gpt-oss/   # LMCache (OpenAI-compatible)
+└── README.md              # Este documento
 ```
 
 ## 🔗 Referencias

@@ -1,0 +1,12 @@
+services:
+  lmcache:
+    build: .
+    image: lmcache-gptoss:latest
+    container_name: docker-lmcache
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend_cpu.yaml:/app/backend_cpu.yaml:ro
+      - ./lmcache-data:/lmcache-data
+    gpus: all

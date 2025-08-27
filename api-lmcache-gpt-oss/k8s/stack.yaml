@@ -1,0 +1,99 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: lmcache
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: lmcache-config
+  namespace: lmcache
+data:
+  backend_cpu.yaml: |
+    # LMCache: CPU+Disco, orientado a producción en máquina única    
+    chunk_size: 256
+    local_cpu: True
+    max_local_cpu_size: 32
+    local_disk: /lmcache-data
+    max_local_disk_size: 100
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: lmcache-data-pv
+spec:
+  capacity:
+    storage: 100Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data/lmcache-data" # IMPORTANTE: Cambia esta ruta a una que exista en tu nodo de Kubernetes
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: lmcache-data-pvc
+  namespace: lmcache
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lmcache
+  namespace: lmcache
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lmcache
+  template:
+    metadata:
+      labels:
+        app: lmcache
+    spec:
+      containers:
+      - name: lmcache
+        image: <region>.ocir.io/<tenancy-namespace>/repo/lmcache:latest # Imagen personalizada
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8000
+        volumeMounts:
+        - name: config-volume
+          mountPath: /app/backend_cpu.yaml
+          subPath: backend_cpu.yaml
+        - name: data-volume
+          mountPath: /lmcache-data
+        resources:
+          requests:
+            nvidia.com/gpu: 3
+          limits:
+            nvidia.com/gpu: 3
+      imagePullSecrets:
+        - name: ocirsecret
+      volumes:
+      - name: config-volume
+        configMap:
+          name: lmcache-config
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: lmcache-data-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lmcache-service
+  namespace: lmcache
+spec:
+  type: LoadBalancer
+  selector:
+    app: lmcache
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000

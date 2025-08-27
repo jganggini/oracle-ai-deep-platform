@@ -1,0 +1,151 @@
+---
+# Namespace para el stack mineru
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: mineru
+---
+# Persistent Volume Claims para datos persistentes
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mineru-models-pvc
+  namespace: mineru
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Gi  # Para modelos de MinerU
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mineru-cache-pvc
+  namespace: mineru
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Gi  # Para cache
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mineru-data-pvc
+  namespace: mineru
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Gi  # Para datos de entrada
+---
+# Deployment del servicio mineru API (FastAPI)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mineru
+  namespace: mineru
+  labels:
+    app: mineru
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mineru
+  template:
+    metadata:
+      labels:
+        app: mineru
+    spec:
+      containers:
+      - name: mineru
+        image: <region>.ocir.io/<tenancy-namespace>/repo/mineru:latest # Imagen personalizada
+        ports:
+        - containerPort: 8000  # Puerto interno del contenedor (como en docker-compose)
+        env:
+        # GPU
+        - name: GPU_ENABLED
+          value: "true"
+        - name: GPU_DEVICE
+          value: "cuda"
+        - name: GPU_BACKEND
+          value: "pipeline"
+        - name: MINERU_VRAM_PER_WORKER_MB
+          value: "768"
+        # Métricas
+        - name: METRICS_ENABLED
+          value: "true"
+        # Optimizaciones de hilos
+        - name: OMP_NUM_THREADS
+          value: "1"
+        - name: MKL_NUM_THREADS
+          value: "1"
+        - name: OPENBLAS_NUM_THREADS
+          value: "1"
+        - name: NUMEXPR_NUM_THREADS
+          value: "1"
+        # Configuración de caché y modelos
+        - name: CACHE_DIR
+          value: "/cache"
+        - name: MODEL_PATH
+          value: "/models"
+        volumeMounts:
+        - name: models-storage
+          mountPath: /models
+        - name: cache-storage
+          mountPath: /cache
+        - name: data-storage
+          mountPath: /data
+        resources:
+          requests:
+            memory: "64Gi"
+            cpu: "4000m"
+            nvidia.com/gpu: 1
+          limits:
+            memory: "128Gi"
+            cpu: "8000m"
+            nvidia.com/gpu: 1
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 60
+          periodSeconds: 30
+          timeoutSeconds: 5
+          failureThreshold: 5
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+      imagePullSecrets:
+        - name: ocirsecret
+      volumes:
+      - name: models-storage
+        persistentVolumeClaim:
+          claimName: mineru-models-pvc
+      - name: cache-storage
+        persistentVolumeClaim:
+          claimName: mineru-cache-pvc
+      - name: data-storage
+        persistentVolumeClaim:
+          claimName: mineru-data-pvc
+---
+# Services para ambos deployments
+apiVersion: v1
+kind: Service
+metadata:
+  name: mineru-service
+  namespace: mineru
+spec:
+  selector:
+    app: mineru
+  ports:
+  - port: 8001
+    targetPort: 8000
+  type: LoadBalancer
