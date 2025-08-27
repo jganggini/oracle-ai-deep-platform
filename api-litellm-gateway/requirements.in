@@ -1,0 +1,17 @@
+# ==== FastAPI / Server ====
+fastapi
+uvicorn[standard]
+
+# ==== LLM ====
+litellm
+openai
+
+# ==== Env / Config ====
+python-dotenv
+pydantic
+pydantic-settings
+oci
+
+# ==== Test / Utils ====
+requests
+pytest

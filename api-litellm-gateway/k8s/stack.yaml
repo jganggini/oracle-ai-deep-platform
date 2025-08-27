@@ -1,0 +1,66 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: litellm
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: litellm-gateway
+  namespace: litellm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: litellm-gateway
+  template:
+    metadata:
+      labels:
+        app: litellm-gateway
+    spec:
+      containers:
+      - name: litellm-gateway
+        image: <region>.ocir.io/<tenancy-namespace>/repo/litellm-gateway:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 4000
+        readinessProbe:
+          httpGet:
+            path: /litellm/oci/v1/health
+            port: 4000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+          timeoutSeconds: 2
+        livenessProbe:
+          httpGet:
+            path: /litellm/oci/v1/health
+            port: 4000
+          initialDelaySeconds: 15
+          periodSeconds: 20
+          timeoutSeconds: 3
+        resources:
+          requests:
+            cpu: "200m"
+            memory: "256Mi"
+          limits:
+            cpu: "1000m"
+            memory: "512Mi"
+      imagePullSecrets:
+      - name: ocirsecret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: litellm-gateway-svc
+  namespace: litellm
+spec:
+  type: LoadBalancer
+  selector:
+    app: litellm-gateway
+  ports:
+  - name: http
+    protocol: TCP
+    port: 4000
+    targetPort: 4000
+
