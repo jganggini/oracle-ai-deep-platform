@@ -1,5 +1,5 @@
-LMCache + vLLM (GPT-OSS) en Docker
-=================================
+LMCache + vLLM (GPT-OSS)
+========================
 
 Contenedor único que reemplaza el `docker-compose.yaml` para exponer la API OpenAI de vLLM con soporte de LMCache (offload CPU/disco). Basado en la imagen `vllm/vllm-openai:v0.10.1.1`.
 

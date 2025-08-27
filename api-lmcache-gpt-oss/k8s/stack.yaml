@@ -69,13 +69,31 @@ spec:
           subPath: backend_cpu.yaml
         - name: data-volume
           mountPath: /lmcache-data
+        args:
+        - --model
+        - openai/gpt-oss-120b
+        - --max-model-len
+        - "32768"
+        - --tensor-parallel-size
+        - "3"                       # igual al número de GPU solicitadas
+        - --gpu-memory-utilization
+        - "0.90"
+        - --disable-hybrid-kv-cache-manager
+        - --kv-transfer-config
+        - '{"kv_connector":"LMCacheConnectorV1","kv_role":"kv_both"}'
+        - --chat-template-content-format
+        - openai
         resources:
           requests:
+            cpu: "10000m" # 10 vCPU
+            memory: "112Gi"
             nvidia.com/gpu: 3
           limits:
+            cpu: "20000m" # 20 vCPU
+            memory: "224Gi"
             nvidia.com/gpu: 3
       imagePullSecrets:
-        - name: ocirsecret
+      - name: ocirsecret
       volumes:
       - name: config-volume
         configMap:
