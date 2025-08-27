@@ -4,44 +4,6 @@ kind: Namespace
 metadata:
   name: lmcache
 ---
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: lmcache-config
-  namespace: lmcache
-data:
-  backend_cpu.yaml: |
-    # LMCache: CPU+Disco, orientado a producción en máquina única    
-    chunk_size: 256
-    local_cpu: True
-    max_local_cpu_size: 32
-    local_disk: /lmcache-data
-    max_local_disk_size: 100
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: lmcache-data-pv
-spec:
-  capacity:
-    storage: 100Gi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: "/mnt/data/lmcache-data" # IMPORTANTE: Cambia esta ruta a una que exista en tu nodo de Kubernetes
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: lmcache-data-pvc
-  namespace: lmcache
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 100Gi
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -63,26 +25,20 @@ spec:
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8000
-        volumeMounts:
-        - name: config-volume
-          mountPath: /app/backend_cpu.yaml
-          subPath: backend_cpu.yaml
-        - name: data-volume
-          mountPath: /lmcache-data
-        args:
-        - --model
-        - openai/gpt-oss-120b
-        - --max-model-len
-        - "32768"
-        - --tensor-parallel-size
-        - "2"
-        - --gpu-memory-utilization
-        - "0.90"
-        - --disable-hybrid-kv-cache-manager
-        - --kv-transfer-config
-        - '{"kv_connector":"LMCacheConnectorV1","kv_role":"kv_both"}'
-        - --chat-template-content-format
-        - openai
+        readinessProbe:
+          httpGet:
+            path: /v1/models
+            port: 8000
+          initialDelaySeconds: 10
+          periodSeconds: 15
+          timeoutSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8000
+          initialDelaySeconds: 20
+          periodSeconds: 30
+          timeoutSeconds: 5
         resources:
           requests:
             cpu: "10000m" # 10 vCPU
@@ -94,13 +50,6 @@ spec:
             nvidia.com/gpu: 2
       imagePullSecrets:
       - name: ocirsecret
-      volumes:
-      - name: config-volume
-        configMap:
-          name: lmcache-config
-      - name: data-volume
-        persistentVolumeClaim:
-          claimName: lmcache-data-pvc
 ---
 apiVersion: v1
 kind: Service
