@@ -13,20 +13,10 @@
   <a href="https://github.com/jganggini/oracle-ai-deep-platform/issues">💣 Report Bug</a>
   ·
   <a href="https://github.com/jganggini/oracle-ai-deep-platform/pulls">🚀 Request Feature</a>
-
-<!-- Video explicativo de la arquitectura -->
-<div align="center" style="margin-bottom: 24px;">
-  <video controls>
-    <source src="https://github.com/jganggini/oracle-ai-deep-platform/raw/main/_docs/img/architeture-oracle-ai-deep-agents.mp4" type="video/mp4">
-    Tu navegador no soporta la reproducción de video.
-  </video>
-  <br/>
-  <i>Video: Arquitectura Oracle AI Deep Agents</i>
-</div>
+  
 </div>
 
 https://github.com/user-attachments/assets/f3b221a4-eeef-4058-a3db-8cf4bb5de75e
-
 
 
 ## Características
