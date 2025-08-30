@@ -16,14 +16,20 @@
 
 <!-- Video explicativo de la arquitectura -->
 <div align="center" style="margin-bottom: 24px;">
-  <video width="700" controls>
-    <source src="https://github.com/jganggini/oracle-ai-deep-platform/blob/main/_docs/img/architeture-oracle-ai-deep-agents.mp4?raw=true" type="video/mp4">
+  <video controls>
+    <source src="https://github.com/jganggini/oracle-ai-deep-platform/raw/main/_docs/img/architeture-oracle-ai-deep-agents.mp4" type="video/mp4">
     Tu navegador no soporta la reproducción de video.
   </video>
   <br/>
   <i>Video: Arquitectura Oracle AI Deep Agents</i>
 </div>
 </div>
+
+https://github.com/jganggini/oracle-ai-deep-platform/raw/main/_docs/img/architeture-oracle-ai-deep-agents.mp4
+
+https://github.com/jganggini/oracle-ai-deep-platform/blob/main/_docs/img/architeture-oracle-ai-deep-agents.mp4?raw=true
+
+
 
 ## Características
 
