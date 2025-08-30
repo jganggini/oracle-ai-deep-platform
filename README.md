@@ -13,10 +13,10 @@
   <a href="https://github.com/jganggini/oracle-ai-deep-platform/issues">💣 Report Bug</a>
   ·
   <a href="https://github.com/jganggini/oracle-ai-deep-platform/pulls">🚀 Request Feature</a>
-  
+
 </div>
 
-https://github.com/user-attachments/assets/f3b221a4-eeef-4058-a3db-8cf4bb5de75e
+https://github.com/user-attachments/assets/85baa72a-d82a-44b6-a066-95abef546bed
 
 
 ## Características
