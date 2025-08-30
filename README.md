@@ -25,9 +25,7 @@
 </div>
 </div>
 
-https://github.com/jganggini/oracle-ai-deep-platform/raw/main/_docs/img/architeture-oracle-ai-deep-agents.mp4
-
-https://github.com/jganggini/oracle-ai-deep-platform/blob/main/_docs/img/architeture-oracle-ai-deep-agents.mp4?raw=true
+https://github.com/user-attachments/assets/f3b221a4-eeef-4058-a3db-8cf4bb5de75e
 
 
 
