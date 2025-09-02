@@ -12,9 +12,7 @@
   ·
   <a href="https://github.com/jganggini/oracle-ai-deep-platform/pulls">🚀 Request Feature</a>
 
-  <a href="https://youtu.be/5dilnUUcgQE?si=V4t6ImWXS-aJSYEl" target="_blank">
-    <img src="../_docs/img/MinerU-logo.png">
-  </a>
+  <img src="../_docs/img/MinerU-logo.png">
 </div>
 <br />
 
