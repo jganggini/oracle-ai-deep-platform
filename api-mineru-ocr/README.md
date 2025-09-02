@@ -1,30 +1,160 @@
-# Stack de MinerU OCR Docker
+[![Issues][issues-shield]][issues-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
-## 🚀 Instalación y Uso (Docker Compose)
+<br />
+<div align="center" style="text-align:center;">
+  
+  <a style="font-size:large;" href="/src/">👨🏽‍💻 Explore the Code »</a>
+  <br/>
+  <a href="https://www.youtube.com/watch?v=KC23zRaC-_U&list=PLMUWTQHw13gZ54wEx2XRxWE5is4B12szC">🎬 View Demo</a>
+  ·
+  <a href="https://github.com/jganggini/oracle-ai-deep-platform/issues">💣 Report Bug</a>
+  ·
+  <a href="https://github.com/jganggini/oracle-ai-deep-platform/pulls">🚀 Request Feature</a>
 
-### 1. Configuración
-No se requiere configuración previa. Las variables de entorno están pre-configuradas en `docker-compose.yaml` para usar GPU.
+  <a href="https://youtu.be/5dilnUUcgQE?si=V4t6ImWXS-aJSYEl" target="_blank">
+    <img src="../_docs/img/MinerU-logo.png">
+  </a>
+</div>
+<br />
 
-### 2. Construir y Ejecutar
+## 📄 Contents
+
+MinerU es una herramienta avanzada que convierte archivos PDF en formatos legibles por máquina, como markdown y JSON, permitiendo la extracción sencilla de información a cualquier formato requerido. MinerU nació durante el pre-entrenamiento de InternLM, con el objetivo de resolver problemas de conversión de símbolos en literatura científica y contribuir al desarrollo tecnológico en la era de los grandes modelos de lenguaje.
+
+**Este proyecto integra MinerU y añade una funcionalidad clave:**  
+Cada párrafo y página del PDF procesado se numera automáticamente en el resultado markdown, facilitando la referencia y localización precisa del contenido extraído. Esto es especialmente útil para tareas de análisis, revisión o trazabilidad de información en documentos extensos.
+
+**Ventajas principales:**
+- Extracción estructurada de texto y tablas desde PDFs complejos.
+- Numeración automática de páginas y párrafos en el markdown generado.
+- Organización clara del contenido para búsquedas y referencias rápidas.
+- Soporte para procesamiento concurrente y optimización para GPUs.
+
+Para más información técnica, revisa la [documentación oficial de MinerU](https://github.com/opendatalab/MinerU).
+
+---
+
+#### Paso 1: Construir la imagen
+
 ```bash
-# Primera vez o después de cambios en el código/dependencias
-docker compose up -d --build
-
-# Iniciar el servicio (si ya está construido)
-docker compose up -d
+docker build -t mineru-ocr:latest -f Dockerfile.mineru .
 ```
 
-### 3. Verificar Funcionamiento
-```bash
-# Verificar estado del contenedor (debe estar "running" o "healthy")
-docker compose ps
+#### Paso 2: Desplegar
 
-# Probar endpoints
-curl http://localhost:8001/health
-curl http://localhost:8001/metrics
+- PowerShell (Windows):
+  ```powershell
+  # true=GPU, false=CPU
+  docker run --rm -d `
+    --gpus all `
+    -e GPU_ENABLED=true `
+    -p 8001:8000 `
+    -v ${PWD}:/app `
+    --name mineru `
+    mineru-ocr:latest
+  ```
+
+- Bash (Linux/macOS o Git Bash/WSL en Windows):
+  ```bash
+  # true=GPU, false=CPU
+  docker run --rm -d \
+    --gpus all \
+    -e GPU_ENABLED=true \
+    -p 8001:8000 \
+    -v "$PWD":/app \
+    --name mineru \
+    mineru-ocr:latest
+  ```
+
+💡 `Notas`:
+- Se requiere de NVIDIA Container Toolkit instalado para usar GPU.
+
+🚨 `Parámetros` → [Dockerfile.mineru](/api-mineru-ocr/Dockerfile.mineru):
+
+- `OMP_NUM_THREADS=1`: límite de hilos para librerías basadas en OpenMP. Evita sobre-suscripción de CPU.
+- `MKL_NUM_THREADS=1`: límite de hilos de Intel MKL para operaciones numéricas.
+- `OPENBLAS_NUM_THREADS=1`: controla el paralelismo de OpenBLAS.
+- `NUMEXPR_NUM_THREADS=1`: fija los hilos de NumExpr. Mantenerlos en 1 reduce contención cuando ya hay concurrencia por páginas.
+
+ℹ️ Estos límites están pensados para entornos con múltiples procesos concurrentes (una página por proceso). Si ejecutas sólo 1 worker y necesitas máximo rendimiento en CPU, puedes incrementarlos, pero monitoriza la latencia y la contención.
+
+🚨 `Parámetros` → [config.py](/api-mineru-ocr/app/config.py):
+
+- `GPU_ENABLED (true)`: habilita el uso de GPU. Usa `false` para forzar CPU.
+- `GPU_DEVICE ("cuda")`: dispositivo de cómputo (p.ej., `cuda`, `cuda:0` o `cpu`).
+- `GPU_BACKEND ("pipeline")`: backend de ejecución de MinerU.
+- `MINERU_VRAM_PER_WORKER_MB (1536)`: VRAM por worker en MB. Menor = más concurrencia; mayor = más estabilidad.
+- `MINERU_WORKERS_CAP (6)`: tope superior de workers simultáneos tras cálculo por VRAM/CPU.
+- `MINERU_VRAM_OVERHEAD_MB (512)`: overhead de VRAM por proceso para calcular concurrencia segura.
+- `MINERU_PAGE_TIMEOUT_MS (180000)`: timeout por página (ms) para abortar procesos colgados.
+- `MINERU_RAMP_DELAY_MS (300)`: retardo incremental (ms) entre lanzamientos; suaviza picos de inicialización.
+- `LOG_LEVEL ("INFO")`: nivel de log global (DEBUG/INFO/WARN/ERROR).
+- `LOG_FILE ("/app/audit.log")`: ruta del log persistente dentro del contenedor.
+- `MINERU_VERBOSE_STAGES (false)`: logs de progreso de etapas (OCR-det/rec/etc.).
+- `MINERU_LOG_DETAILED (false)`: logs detallados por página (timings, uso de recursos).
+- `MINERU_EXTRA_ARGS ("")`: flags adicionales para pasar al CLI de MinerU (avanzado).
+
+🧮 `Cálculos`:
+
+- Variables usadas:
+
+  - VRAM total detectada: `total_vram_mb`
+  - VRAM por worker: `per_worker_mb` (form-data) o `MINERU_VRAM_PER_WORKER_MB` (default)
+  - Overhead por proceso: `MINERU_VRAM_OVERHEAD_MB`
+  - Núcleos CPU: `cpu_cores`
+  - Límite superior opcional: `workers_cap` (form-data) o `MINERU_WORKERS_CAP`
+
+Fórmulas:
+
+  ```math
+  \text{vram\_per\_proc} = \text{per\_worker\_mb} + \text{MINERU\_VRAM\_OVERHEAD\_MB}
+  ```
+
+  ```math
+  \text{allowed\_by\_vram} = \begin{cases}
+  \left\lfloor \dfrac{\text{total\_vram\_mb}}{\text{vram\_per\_proc}} \right\rfloor & \text{→ si GPU\_ENABLED} \\
+  1 & \text{→ si CPU}
+  \end{cases}
+  ```
+
+  ```math
+  \text{prelim} = \max\big(1,\; \min(\text{allowed\_by\_vram},\; \text{cpu\_cores})\big)
+  ```
+
+  ```math
+  \text{max\_workers} = \begin{cases}
+  \min(\text{prelim},\; \text{cap}) & \text{→ si cap existe} \\
+  \text{prelim} & \text{→ en otro caso}
+  \end{cases}
+  ```
+
+Ejemplo:
+
+```math
+\text{total\_vram\_mb}=24576,\; \text{per\_worker\_mb}=1536
+```
+```math
+\text{MINERU\_VRAM\_OVERHEAD\_MB}=512
+```
+```math
+\text{vram\_per\_proc}=1536+512=2048
+```
+```math
+\text{allowed\_by\_vram}=\left\lfloor \dfrac{24576}{2048} \right\rfloor=12
+```
+```math
+\text{cpu\_cores}=8 \Rightarrow \text{prelim}=\min(12,8)=8
+```
+```math
+\text{cap}=6 \Rightarrow \text{max\_workers}=\min(8,6)=6
 ```
 
-## ☸️ Despliegue en Kubernetes (OCI OKE)
+💡 `Notas`:
+- `MINERU_RAMP_DELAY_MS` solo escalona los lanzamientos (suaviza picos); no cambia `max_workers`.
+- Si `GPU_ENABLED=false`, se fuerza `allowed_by_vram = 1` y la concurrencia queda limitada por CPU y `cap`.
+
+#### Paso 3: ☸️ Despliegue en Kubernetes (OCI OKE)
 
 ### 1. Prerrequisitos
 - Un clúster de Kubernetes con nodos GPU.
@@ -32,33 +162,25 @@ curl http://localhost:8001/metrics
 - Un secreto de registro (`ocirsecret`) para acceder a tu OCI Container Registry.
 
 ### 2. Construir y Subir la Imagen
+
 ```bash
-# Reemplaza con tus valores de OCI
-export REGION="<region>"
-export TENANCY="<tenancy-namespace>"
-export REPO="<repo>"
-export IMAGE_NAME="mineru"
-export TAG="latest"
-
 # Construir la imagen
-docker build -t $IMAGE_NAME:$TAG -f Dockerfile.mineru .
+docker build -t mineru-ocr:latest -f Dockerfile.mineru .
 
-# Etiquetar la imagen para OCI
-docker tag $IMAGE_NAME:$TAG $REGION.ocir.io/$TENANCY/$REPO/$IMAGE_NAME:$TAG
+# Etiquetar la imagen para OCI (reemplaza con tus valores)
+docker tag mineru-ocr:latest <region>.ocir.io/<tenancy-namespace>/<repo>/mineru-ocr:latest
 
 # Subir la imagen a OCI Registry
-docker push $REGION.ocir.io/$TENANCY/$REPO/$IMAGE_NAME:$TAG
+docker push <region>.ocir.io/<tenancy-namespace>/<repo>/mineru-ocr:latest
 ```
 
 ### 3. Desplegar el Stack
-El archivo `k8s/stack.yaml` contiene todos los manifiestos necesarios (Namespace, PVCs, Deployment, Service).
+El archivo `manifest.mineru.yaml` contiene los manifiestos necesarios (Namespace, Deployment, Service).
 
 ```bash
-# 1. Edita k8s/stack.yaml y reemplaza los placeholders de la imagen
-#    image: <region>.ocir.io/<tenancy-namespace>/repo/mineru:latest
-
-# 2. Aplica el manifiesto
-kubectl apply -f k8s/stack.yaml
+# Reemplaza los placeholders de la imagen:
+# <region>.ocir.io/<tenancy-namespace>/repo/mineru:latest
+kubectl apply -f manifest.mineru.yaml
 ```
 
 ### 4. Verificar el Despliegue
@@ -82,19 +204,24 @@ kubectl delete -f k8s/stack.yaml
 
 ```
 api-mineru-ocr/
-├── app/                  # Lógica de la aplicación FastAPI
-├── main.py               # Punto de entrada de la API
-├── requirements.txt      # Dependencias Python
-├── Dockerfile.mineru     # Dockerfile con soporte GPU
-├── docker-compose.yaml   # Orquestación para desarrollo local
-├── k8s/
-│   └── stack.yaml        # Manifiestos para despliegue en Kubernetes
-├── models/               # Directorio para modelos (se monta con volumen)
-├── cache/                # Directorio para cache (se monta con volumen)
-├── data/                 # Directorio para archivos de entrada (se monta con volumen)
-└── _tests/               # Scripts de prueba
-    ├── test-ocr.ps1      # PowerShell (Windows)
-    └── test-ocr.sh       # Bash (Linux/macOS)
+├── app/                      # Código de la aplicación FastAPI
+│   ├── main.py               # Inicializa app + logging persistente
+│   ├── start_server.py       # Uvicorn entry (app.start_server:app)
+│   ├── config.py             # Configuración (pydantic)
+│   ├── metrics.py            # Métricas Prometheus
+│   └── services/
+│       ├── ocr.py            # Lógica de OCR como servicio (process_ocr)
+│       ├── mineru.py         # Wrapper CLI MinerU + extracción/MD
+│       └── metrics.py        # Métricas Prometheus
+├── Dockerfile.mineru         # Imagen
+├── manifest.mineru.yaml      # Manifiesto de despliegue OKE
+├── requirements.txt          # Dependencias Python
+├── README.md                 # Documentación
+└── _tests/                   # Ejemplos y pruebas locales
+    ├── test.ps1              # Ejecución mínima (PowerShell)
+    ├── test-performance.ps1  # Benchmark simple
+    ├── test-factura.pdf      # PDF de muestra
+    └── result/               # Salidas local
 ```
 
 ## 📖 Uso de la API
@@ -105,22 +232,24 @@ api-mineru-ocr/
 - `GET /metrics` - Métricas Prometheus
 - `POST /ocr` - Procesamiento OCR con campos de formulario
 
-### Ejemplo de OCR (PowerShell)
+### Ejemplo (PowerShell)
 ```powershell
+# Todos los parámetros del endpoint /ocr vía multipart/form-data
 $Form = @{
-  file        = Get-Item "C:\file.pdf"
-  vram_limit  = "4096"      # MB por proceso
-  concurrency = "5"        # páginas en paralelo
+  file          = Get-Item "C:\doc.pdf"  # archivo PDF
+  per_worker_mb = "1536"                  # opcional (>=256)
+  workers_cap   = "6"                     # opcional (>=1)
 }
 Invoke-WebRequest -Uri "http://localhost:8001/ocr" -Method POST -Form $Form -OutFile "result.zip"
 ```
 
-### Ejemplo de OCR (Bash/Linux/macOS)
+### Ejemplo (Bash/Linux/macOS)
 ```bash
 curl -X POST "http://localhost:8001/ocr" \
   -F "file=@/ruta/a/doc.pdf" \
-  -F "vram_limit=4096" \
-  -F "concurrency=5" -o result.zip
+  -F "per_worker_mb=1536" \
+  -F "workers_cap=6" \
+  -o result.zip
 ```
 
 ### Estructura del ZIP Resultante
@@ -152,45 +281,45 @@ Contenido de la segunda página [p2](#p2)
 
 ## 📊 Pruebas de Rendimiento
 
-Tabla de resultados por ejecución:
+Host de referencia:
+- GPU: NVIDIA 24 GB (NVIDIA Container Toolkit)
+- CPU: 16 vCPU
+- Disco: NVMe
 
-| Ejecución | Tiempo (s) | Concurrencia | VRAM (MB) |
-|-----------|------------|--------------|-----------|
-| 2GB/10x Run 1 | 96.73 | 10 | 2048 |
-| 2GB/10x Run 2 | 97.07 | 10 | 2048 |
-| 2GB/10x Run 3 | 94.28 | 10 | 2048 |
-| 4GB/5x Run 1  | 52.66 | 5  | 4096 |
-| 4GB/5x Run 2  | 50.61 | 5  | 4096 |
-| 4GB/5x Run 3  | 51.70 | 5  | 4096 |
-| 8GB/2x Run 1  | 96.01 | 2  | 8192 |
-| 8GB/2x Run 2  | 98.62 | 2  | 8192 |
-| 8GB/2x Run 3  | 95.13 | 2  | 8192 |
+Escenarios (parámetros enviados por API):
 
-**Notas:**
-- El primer run de un escenario puede ser más lento por descarga/caliente de modelos; los siguientes usan caché.
-- Hay archivos de ejemplo para pruebas en: [`test.ps1`](./_test/test.ps1).
-- Los tiempos varían según hardware, drivers y tipo de documento.
+| per_worker_mb | cap | Run #1 (s) | Run #2 (s) | Run #3 (s) | Promedio (s) |
+|---------------|-----|------------|------------|------------|--------------|
+| 512           | 6   | 66.09      | 60.09      | 54.41      | 60.20        |
+| 768           | 6   | 54.71      | 54.84      | 54.58      | 54.71        |
+| 1024          | 6   | 55.43      | 54.34      | 55.23      | 55.00        |
 
-## 🐳 Comandos Útiles (Docker)
+Notas:
+- En este equipo, `per_worker_mb=768` y `cap=6` dio el mejor promedio.
+- Ajusta `workers_cap` según vCPU/IO. Si CPU se satura, baja el cap.
+- La concurrencia efectiva interna utiliza VRAM total y `per_worker_mb`.
+
+### Pruebas locales rápidas
+
+- Ejemplo mínimo (PowerShell):
+```powershell
+cd .\_tests
+# corre varios escenarios (per_worker_mb y workers_cap)
+test-performance.ps1
+# usa per_worker_mb=1536 y workers_cap=6; guarda result.zip
+test.ps1  
+```
+
+💡 `Notas`: Si ves en los ZIP el mensaje `{ "detail": "VRAM insuficiente para 1 worker ..." }`, verifica que el contenedor tiene acceso a GPU (usa `--gpus all` y `-e GPU_ENABLED=true`), o ejecuta en CPU con `-e GPU_ENABLED=false`.
+
+## 🐳 Comandos Útiles
 
 ```bash
-# Iniciar servicio en segundo plano
-docker compose up -d
-
-# Detener servicio
-docker compose down
-
-# Detener y eliminar volúmenes (limpieza total)
-docker compose down -v
-
-# Reconstruir la imagen y reiniciar el servicio
-docker compose up -d --build
-
-# Ver estado de los contenedores
-docker compose ps
-
 # Ver logs en tiempo real
-docker compose logs -f mineru
+docker logs -f mineru
+
+# Ver archivo de log persistente (si mapeaste -v "$PWD":/app)
+tail -f app/audit.log
 
 # Acceder al shell del contenedor
 docker exec -it mineru bash
@@ -198,30 +327,6 @@ docker exec -it mineru bash
 # Ver uso de recursos (CPU, Memoria)
 docker stats mineru
 ```
-
-## ⚡ Optimizaciones Implementadas
-
-### Procesamiento Paralelo por Página
-- División automática del PDF en páginas individuales
-- Ejecución concurrente de MinerU por página
-- Semáforo configurable para controlar concurrencia
-
-### Límites de Hilos por Proceso
-- `OMP_NUM_THREADS=1`: Evita contención de OpenMP
-- `MKL_NUM_THREADS=1`: Optimiza Intel MKL
-- `OPENBLAS_NUM_THREADS=1`: Controla OpenBLAS
-- `NUMEXPR_NUM_THREADS=1`: Limita NumExpr
-
-### Gestión Eficiente de Memoria
-- VRAM parametrizable para mejor distribución
-- Procesamiento por streaming para archivos grandes
-- Limpieza automática de archivos temporales
-
-### Estructura de Salida Organizada
-- Markdown consolidado con paginación automática
-- Imágenes organizadas por página con prefijos
-- ZIPs individuales por página para análisis detallado
-
 ## 📝 Casos de Uso Recomendados
 
 ### Ideal para:
@@ -232,23 +337,27 @@ docker stats mineru
 - ✅ Extracción de texto con contexto de página
 
 ### Considerar alternativas para:
-- ❌ GPUs con <4GB VRAM - reducir concurrencia
+- ❌ GPUs con <4GB VRAM - aumentar per_worker_mb
 - ❌ Tiempo real crítico - usar procesamiento síncrono
 
 ## 🔧 Ajustes de Rendimiento
 
-- Aumenta `MINERU_CONCURRENCY` y `VRAM_LIMIT` según recursos.
-- Con más GPU/VRAM/CPU, el servicio escala para mayores cargas.
+- Controla la eficiencia con `per_worker_mb`: valores más bajos = más workers paralelos, valores más altos = más estabilidad por worker.
+- El servicio detecta automáticamente la VRAM total y calcula la concurrencia óptima: `floor(total_vram_mb / per_worker_mb)`.
+- Ajusta `per_worker_mb` según tu GPU: 512-768 MB para estabilidad, 1024+ MB para máxima estabilidad.
 
-## 🔗 Referencias y Documentación
+## 📚 Development References
 
 - [MinerU GitHub](https://github.com/opendatalab/MinerU) - Documentación oficial
 - [Docker Compose](https://docs.docker.com/compose/) - Guía de Docker Compose
 - [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/) - Soporte GPU
 - [FastAPI](https://fastapi.tiangolo.com/) - Framework web de alto rendimiento
 
----
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
+[issues-url]: https://github.com/jganggini/oracle-ai-deep-platform/issues
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://www.linkedin.com/in/jgangini/
 
-**Versión**: 2.0.0-optimized \
-**Última actualización**: Agosto 2024.
-**Compatibilidad**: CUDA 12.1+, Python 3.10+, Docker 20.10+
+

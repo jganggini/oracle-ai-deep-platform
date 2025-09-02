@@ -1,0 +1,1164 @@
+2025-09-02 09:59:56,537 - mineru.cli - INFO - Ejecutando MinerU: /usr/local/bin/mineru -p /tmp/tmprggf8t7z/pages_src/page_0001.pdf -o /tmp/tmprggf8t7z/pages_out/p0001 -m ocr -b pipeline -l latin -d cuda --vram 1536
+2025-09-02 09:59:56,838 - mineru.cli - INFO - Ejecutando MinerU: /usr/local/bin/mineru -p /tmp/tmprggf8t7z/pages_src/page_0002.pdf -o /tmp/tmprggf8t7z/pages_out/p0002 -m ocr -b pipeline -l latin -d cuda --vram 1536
+2025-09-02 09:59:57,138 - mineru.cli - INFO - Ejecutando MinerU: /usr/local/bin/mineru -p /tmp/tmprggf8t7z/pages_src/page_0003.pdf -o /tmp/tmprggf8t7z/pages_out/p0003 -m ocr -b pipeline -l latin -d cuda --vram 1536
+2025-09-02 09:59:57,438 - mineru.cli - INFO - Ejecutando MinerU: /usr/local/bin/mineru -p /tmp/tmprggf8t7z/pages_src/page_0004.pdf -o /tmp/tmprggf8t7z/pages_out/p0004 -m ocr -b pipeline -l latin -d cuda --vram 1536
+2025-09-02 09:59:57,737 - mineru.cli - INFO - Ejecutando MinerU: /usr/local/bin/mineru -p /tmp/tmprggf8t7z/pages_src/page_0005.pdf -o /tmp/tmprggf8t7z/pages_out/p0005 -m ocr -b pipeline -l latin -d cuda --vram 1536
+2025-09-02 09:59:58,036 - mineru.cli - INFO - Ejecutando MinerU: /usr/local/bin/mineru -p /tmp/tmprggf8t7z/pages_src/page_0006.pdf -o /tmp/tmprggf8t7z/pages_out/p0006 -m ocr -b pipeline -l latin -d cuda --vram 1536
+2025-09-02 10:00:24,677 - mineru.cli - INFO - Salida MinerU (tail):
+Ignore import error when loading sglang.srt.models.torch_native_llama. tensor model parallel group is not initialized
+Creating new Ultralytics Settings v0.0.6 file ✅ 
+View Ultralytics Settings with 'yolo settings' or at '/root/.config/Ultralytics/settings.json'
+Update Settings with 'yolo settings key=value', i.e. 'yolo settings runs_dir=path/to/dir'. For help see https://docs.ultralytics.com/quickstart/#ultralytics-settings.
+2025-09-02 10:00:06.773 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:124 - Batch 1/1: 1 pages/1 pages
+2025-09-02 10:00:06.773 | INFO     | mineru.backend.pipeline.pipeline_analyze:batch_image_analyze:187 - gpu_memory: 1536 GB, batch_ratio: 16
+2025-09-02 10:00:06.774 | INFO     | mineru.backend.pipeline.model_init:__init__:137 - DocAnalysis init, this may take some times......
+2025-09-02 10:00:13.908 | INFO     | mineru.backend.pipeline.model_init:__init__:182 - DocAnalysis init done!
+2025-09-02 10:00:13.908 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:64 - model init cost: 7.134222507476807
+Layout Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.11it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.11it/s]
+MFD Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFD Predict: 100%|██████████| 1/1 [00:01<00:00,  1.65s/it]
+MFD Predict: 100%|██████████| 1/1 [00:01<00:00,  1.65s/it]
+MFR Predict: 0it [00:00, ?it/s]
+MFR Predict: 0it [00:00, ?it/s]
+OCR-det latin:   0%|          | 0/9 [00:00<?, ?it/s]
+OCR-det latin:  11%|█         | 1/9 [00:00<00:01,  5.61it/s]
+OCR-det latin:  44%|████▍     | 4/9 [00:00<00:00, 14.58it/s]
+OCR-det latin:  78%|███████▊  | 7/9 [00:00<00:00, 17.55it/s]
+OCR-det latin: 100%|██████████| 9/9 [00:00<00:00, 18.14it/s]
+OCR-det latin: 100%|██████████| 9/9 [00:00<00:00, 16.33it/s]
+Table Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Table Predict: 100%|██████████| 1/1 [00:00<00:00,  2.36it/s]
+Table Predict: 100%|██████████| 1/1 [00:00<00:00,  2.36it/s]
+OCR-rec Predict:   0%|          | 0/40 [00:00<?, ?it/s]
+OCR-rec Predict:  80%|████████  | 32/40 [00:00<00:00, 218.64it/s]
+OCR-rec Predict: 100%|██████████| 40/40 [00:00<00:00, 130.97it/s]
+Processing pages:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing pages: 100%|██████████| 1/1 [00:02<00:00,  2.50s/it]
+Processing pages: 100%|██████████| 1/1 [00:02<00:00,  2.50s/it]
+2025-09-02 10:00:22.130 | INFO     | mineru.cli.common:_process_output:156 - local output dir is /tmp/tmprggf8t7z/pages_out/p0003/page_0003/ocr
+2025-09-02 10:00:24,680 - mineru.cli - INFO - Ejecutando MinerU: /usr/local/bin/mineru -p /tmp/tmprggf8t7z/pages_src/page_0007.pdf -o /tmp/tmprggf8t7z/pages_out/p0007 -m ocr -b pipeline -l latin -d cuda --vram 1536
+2025-09-02 10:00:24,715 - mineru.cli - INFO - Salida MinerU (tail):
+Ignore import error when loading sglang.srt.models.torch_native_llama. tensor model parallel group is not initialized
+Creating new Ultralytics Settings v0.0.6 file ✅ 
+View Ultralytics Settings with 'yolo settings' or at '/root/.config/Ultralytics/settings.json'
+Update Settings with 'yolo settings key=value', i.e. 'yolo settings runs_dir=path/to/dir'. For help see https://docs.ultralytics.com/quickstart/#ultralytics-settings.
+2025-09-02 10:00:06.758 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:124 - Batch 1/1: 1 pages/1 pages
+2025-09-02 10:00:06.759 | INFO     | mineru.backend.pipeline.pipeline_analyze:batch_image_analyze:187 - gpu_memory: 1536 GB, batch_ratio: 16
+2025-09-02 10:00:06.759 | INFO     | mineru.backend.pipeline.model_init:__init__:137 - DocAnalysis init, this may take some times......
+2025-09-02 10:00:13.868 | INFO     | mineru.backend.pipeline.model_init:__init__:182 - DocAnalysis init done!
+2025-09-02 10:00:13.868 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:64 - model init cost: 7.1086506843566895
+Layout Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.11it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.11it/s]
+MFD Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFD Predict: 100%|██████████| 1/1 [00:01<00:00,  1.80s/it]
+MFD Predict: 100%|██████████| 1/1 [00:01<00:00,  1.80s/it]
+MFR Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFR Predict: 100%|██████████| 1/1 [00:00<00:00,  1.53it/s]
+MFR Predict: 100%|██████████| 1/1 [00:00<00:00,  1.53it/s]
+OCR-det latin:   0%|          | 0/3 [00:00<?, ?it/s]
+OCR-det latin:  67%|██████▋   | 2/3 [00:00<00:00,  9.80it/s]
+OCR-det latin: 100%|██████████| 3/3 [00:00<00:00, 11.49it/s]
+Table Predict: 0it [00:00, ?it/s]
+Table Predict: 0it [00:00, ?it/s]
+OCR-rec Predict:   0%|          | 0/8 [00:00<?, ?it/s]
+OCR-rec Predict: 100%|██████████| 8/8 [00:00<00:00, 39.56it/s]
+OCR-rec Predict: 100%|██████████| 8/8 [00:00<00:00, 39.53it/s]
+Processing pages:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing pages: 100%|██████████| 1/1 [00:02<00:00,  2.24s/it]
+Processing pages: 100%|██████████| 1/1 [00:02<00:00,  2.24s/it]
+2025-09-02 10:00:21.963 | INFO     | mineru.cli.common:_process_output:156 - local output dir is /tmp/tmprggf8t7z/pages_out/p0004/page_0004/ocr
+2025-09-02 10:00:24,718 - mineru.cli - INFO - Ejecutando MinerU: /usr/local/bin/mineru -p /tmp/tmprggf8t7z/pages_src/page_0008.pdf -o /tmp/tmprggf8t7z/pages_out/p0008 -m ocr -b pipeline -l latin -d cuda --vram 1536
+2025-09-02 10:00:25,017 - mineru.cli - INFO - Salida MinerU (tail):
+Ignore import error when loading sglang.srt.models.torch_native_llama. tensor model parallel group is not initialized
+2025-09-02 10:00:06.818 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:124 - Batch 1/1: 1 pages/1 pages
+2025-09-02 10:00:06.819 | INFO     | mineru.backend.pipeline.pipeline_analyze:batch_image_analyze:187 - gpu_memory: 1536 GB, batch_ratio: 16
+2025-09-02 10:00:06.819 | INFO     | mineru.backend.pipeline.model_init:__init__:137 - DocAnalysis init, this may take some times......
+2025-09-02 10:00:13.599 | INFO     | mineru.backend.pipeline.model_init:__init__:182 - DocAnalysis init done!
+2025-09-02 10:00:13.599 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:64 - model init cost: 6.780327558517456
+Layout Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Layout Predict: 100%|██████████| 1/1 [00:01<00:00,  1.17s/it]
+Layout Predict: 100%|██████████| 1/1 [00:01<00:00,  1.17s/it]
+MFD Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFD Predict: 100%|██████████| 1/1 [00:01<00:00,  1.74s/it]
+MFD Predict: 100%|██████████| 1/1 [00:01<00:00,  1.74s/it]
+MFR Predict:   0%|          | 0/47 [00:00<?, ?it/s]
+MFR Predict:  68%|██████▊   | 32/47 [00:01<00:00, 30.89it/s]
+MFR Predict: 100%|██████████| 47/47 [00:01<00:00, 26.43it/s]
+MFR Predict: 100%|██████████| 47/47 [00:01<00:00, 27.23it/s]
+OCR-det latin:   0%|          | 0/5 [00:00<?, ?it/s]
+OCR-det latin:  40%|████      | 2/5 [00:00<00:00, 11.43it/s]
+OCR-det latin:  80%|████████  | 4/5 [00:00<00:00, 14.99it/s]
+OCR-det latin: 100%|██████████| 5/5 [00:00<00:00, 13.16it/s]
+Table Predict: 0it [00:00, ?it/s]
+Table Predict: 0it [00:00, ?it/s]
+OCR-rec Predict:   0%|          | 0/75 [00:00<?, ?it/s]
+OCR-rec Predict:  43%|████▎     | 32/75 [00:00<00:00, 222.32it/s]
+OCR-rec Predict:  85%|████████▌ | 64/75 [00:00<00:00, 88.19it/s] 
+OCR-rec Predict: 100%|██████████| 75/75 [00:00<00:00, 76.83it/s]
+Processing pages:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.14s/it]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.14s/it]
+2025-09-02 10:00:22.484 | INFO     | mineru.cli.common:_process_output:156 - local output dir is /tmp/tmprggf8t7z/pages_out/p0002/page_0002/ocr
+2025-09-02 10:00:25,020 - mineru.cli - INFO - Ejecutando MinerU: /usr/local/bin/mineru -p /tmp/tmprggf8t7z/pages_src/page_0009.pdf -o /tmp/tmprggf8t7z/pages_out/p0009 -m ocr -b pipeline -l latin -d cuda --vram 1536
+2025-09-02 10:00:25,883 - mineru.cli - INFO - Salida MinerU (tail):
+Ignore import error when loading sglang.srt.models.torch_native_llama. tensor model parallel group is not initialized
+2025-09-02 10:00:06.839 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:124 - Batch 1/1: 1 pages/1 pages
+2025-09-02 10:00:06.839 | INFO     | mineru.backend.pipeline.pipeline_analyze:batch_image_analyze:187 - gpu_memory: 1536 GB, batch_ratio: 16
+2025-09-02 10:00:06.840 | INFO     | mineru.backend.pipeline.model_init:__init__:137 - DocAnalysis init, this may take some times......
+2025-09-02 10:00:13.927 | INFO     | mineru.backend.pipeline.model_init:__init__:182 - DocAnalysis init done!
+2025-09-02 10:00:13.927 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:64 - model init cost: 7.087536811828613
+Layout Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.12it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.11it/s]
+MFD Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFD Predict: 100%|██████████| 1/1 [00:01<00:00,  1.76s/it]
+MFD Predict: 100%|██████████| 1/1 [00:01<00:00,  1.76s/it]
+MFR Predict:   0%|          | 0/3 [00:00<?, ?it/s]
+MFR Predict:  67%|██████▋   | 2/3 [00:00<00:00,  3.00it/s]
+MFR Predict: 100%|██████████| 3/3 [00:00<00:00,  4.07it/s]
+MFR Predict: 100%|██████████| 3/3 [00:00<00:00,  3.80it/s]
+OCR-det latin:   0%|          | 0/11 [00:00<?, ?it/s]
+OCR-det latin:   9%|▉         | 1/11 [00:00<00:01,  5.85it/s]
+OCR-det latin:  18%|█▊        | 2/11 [00:00<00:01,  7.42it/s]
+OCR-det latin:  36%|███▋      | 4/11 [00:00<00:00, 11.92it/s]
+OCR-det latin:  55%|█████▍    | 6/11 [00:00<00:00, 14.20it/s]
+OCR-det latin:  73%|███████▎  | 8/11 [00:00<00:00, 15.76it/s]
+OCR-det latin:  91%|█████████ | 10/11 [00:00<00:00, 15.96it/s]
+OCR-det latin: 100%|██████████| 11/11 [00:00<00:00, 14.01it/s]
+Table Predict:   0%|          | 0/4 [00:00<?, ?it/s]
+Table Predict:  25%|██▌       | 1/4 [00:00<00:00,  4.12it/s]
+Table Predict:  50%|█████     | 2/4 [00:00<00:00,  4.57it/s]
+Table Predict:  75%|███████▌  | 3/4 [00:00<00:00,  4.83it/s]
+Table Predict: 100%|██████████| 4/4 [00:01<00:00,  2.85it/s]
+Table Predict: 100%|██████████| 4/4 [00:01<00:00,  3.30it/s]
+OCR-rec Predict:   0%|          | 0/37 [00:00<?, ?it/s]
+OCR-rec Predict:  86%|████████▋ | 32/37 [00:00<00:00, 55.37it/s]
+OCR-rec Predict: 100%|██████████| 37/37 [00:00<00:00, 49.20it/s]
+Processing pages:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.43s/it]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.43s/it]
+2025-09-02 10:00:23.636 | INFO     | mineru.cli.common:_process_output:156 - local output dir is /tmp/tmprggf8t7z/pages_out/p0001/page_0001/ocr
+2025-09-02 10:00:25,885 - mineru.cli - INFO - Ejecutando MinerU: /usr/local/bin/mineru -p /tmp/tmprggf8t7z/pages_src/page_0010.pdf -o /tmp/tmprggf8t7z/pages_out/p0010 -m ocr -b pipeline -l latin -d cuda --vram 1536
+2025-09-02 10:00:25,926 - mineru.cli - INFO - Salida MinerU (tail):
+Ignore import error when loading sglang.srt.models.torch_native_llama. tensor model parallel group is not initialized
+2025-09-02 10:00:06.831 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:124 - Batch 1/1: 1 pages/1 pages
+2025-09-02 10:00:06.832 | INFO     | mineru.backend.pipeline.pipeline_analyze:batch_image_analyze:187 - gpu_memory: 1536 GB, batch_ratio: 16
+2025-09-02 10:00:06.832 | INFO     | mineru.backend.pipeline.model_init:__init__:137 - DocAnalysis init, this may take some times......
+2025-09-02 10:00:13.927 | INFO     | mineru.backend.pipeline.model_init:__init__:182 - DocAnalysis init done!
+2025-09-02 10:00:13.927 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:64 - model init cost: 7.095263957977295
+Layout Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.13it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.13it/s]
+MFD Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFD Predict: 100%|██████████| 1/1 [00:01<00:00,  1.77s/it]
+MFD Predict: 100%|██████████| 1/1 [00:01<00:00,  1.77s/it]
+MFR Predict:   0%|          | 0/57 [00:00<?, ?it/s]
+MFR Predict:  56%|█████▌    | 32/57 [00:01<00:00, 28.15it/s]
+MFR Predict: 100%|██████████| 57/57 [00:02<00:00, 26.96it/s]
+MFR Predict: 100%|██████████| 57/57 [00:02<00:00, 27.13it/s]
+OCR-det latin:   0%|          | 0/3 [00:00<?, ?it/s]
+OCR-det latin:  33%|███▎      | 1/3 [00:00<00:00,  7.80it/s]
+OCR-det latin:  67%|██████▋   | 2/3 [00:00<00:00,  8.22it/s]
+OCR-det latin: 100%|██████████| 3/3 [00:00<00:00,  7.81it/s]
+OCR-det latin: 100%|██████████| 3/3 [00:00<00:00,  7.87it/s]
+Table Predict: 0it [00:00, ?it/s]
+Table Predict: 0it [00:00, ?it/s]
+OCR-rec Predict:   0%|          | 0/110 [00:00<?, ?it/s]
+OCR-rec Predict:  15%|█▍        | 16/110 [00:00<00:00, 121.38it/s]
+OCR-rec Predict:  29%|██▉       | 32/110 [00:00<00:00, 112.41it/s]
+OCR-rec Predict:  44%|████▎     | 48/110 [00:00<00:00, 108.56it/s]
+OCR-rec Predict:  58%|█████▊    | 64/110 [00:00<00:00, 105.44it/s]
+OCR-rec Predict:  73%|███████▎  | 80/110 [00:00<00:00, 119.78it/s]
+OCR-rec Predict:  87%|████████▋ | 96/110 [00:01<00:00, 81.07it/s] 
+OCR-rec Predict: 100%|██████████| 110/110 [00:01<00:00, 55.92it/s]
+OCR-rec Predict: 100%|██████████| 110/110 [00:01<00:00, 75.90it/s]
+Processing pages:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.35s/it]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.35s/it]
+2025-09-02 10:00:23.585 | INFO     | mineru.cli.common:_process_output:156 - local output dir is /tmp/tmprggf8t7z/pages_out/p0006/page_0006/ocr
+2025-09-02 10:00:25,929 - mineru.cli - INFO - Ejecutando MinerU: /usr/local/bin/mineru -p /tmp/tmprggf8t7z/pages_src/page_0011.pdf -o /tmp/tmprggf8t7z/pages_out/p0011 -m ocr -b pipeline -l latin -d cuda --vram 1536
+2025-09-02 10:00:25,980 - mineru.cli - INFO - Salida MinerU (tail):
+Ignore import error when loading sglang.srt.models.torch_native_llama. tensor model parallel group is not initialized
+2025-09-02 10:00:06.852 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:124 - Batch 1/1: 1 pages/1 pages
+2025-09-02 10:00:06.852 | INFO     | mineru.backend.pipeline.pipeline_analyze:batch_image_analyze:187 - gpu_memory: 1536 GB, batch_ratio: 16
+2025-09-02 10:00:06.853 | INFO     | mineru.backend.pipeline.model_init:__init__:137 - DocAnalysis init, this may take some times......
+2025-09-02 10:00:13.961 | INFO     | mineru.backend.pipeline.model_init:__init__:182 - DocAnalysis init done!
+2025-09-02 10:00:13.961 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:64 - model init cost: 7.108392000198364
+Layout Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.14it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.14it/s]
+MFD Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFD Predict: 100%|██████████| 1/1 [00:01<00:00,  1.75s/it]
+MFD Predict: 100%|██████████| 1/1 [00:01<00:00,  1.75s/it]
+MFR Predict:   0%|          | 0/6 [00:00<?, ?it/s]
+MFR Predict:  67%|██████▋   | 4/6 [00:00<00:00,  6.04it/s]
+MFR Predict: 100%|██████████| 6/6 [00:00<00:00,  8.37it/s]
+MFR Predict: 100%|██████████| 6/6 [00:00<00:00,  7.77it/s]
+OCR-det latin:   0%|          | 0/17 [00:00<?, ?it/s]
+OCR-det latin:   6%|▌         | 1/17 [00:00<00:02,  6.28it/s]
+OCR-det latin:  12%|█▏        | 2/17 [00:00<00:01,  7.73it/s]
+OCR-det latin:  29%|██▉       | 5/17 [00:00<00:00, 15.22it/s]
+OCR-det latin:  47%|████▋     | 8/17 [00:00<00:00, 17.74it/s]
+OCR-det latin:  59%|█████▉    | 10/17 [00:00<00:00, 16.59it/s]
+OCR-det latin:  76%|███████▋  | 13/17 [00:00<00:00, 17.69it/s]
+OCR-det latin:  88%|████████▊ | 15/17 [00:00<00:00, 16.59it/s]
+OCR-det latin: 100%|██████████| 17/17 [00:01<00:00, 15.41it/s]
+OCR-det latin: 100%|██████████| 17/17 [00:01<00:00, 15.27it/s]
+Table Predict:   0%|          | 0/2 [00:00<?, ?it/s]
+Table Predict:  50%|█████     | 1/2 [00:00<00:00,  1.95it/s]
+Table Predict: 100%|██████████| 2/2 [00:00<00:00,  2.51it/s]
+Table Predict: 100%|██████████| 2/2 [00:00<00:00,  2.40it/s]
+OCR-rec Predict:   0%|          | 0/60 [00:00<?, ?it/s]
+OCR-rec Predict:  27%|██▋       | 16/60 [00:00<00:00, 115.30it/s]
+OCR-rec Predict:  53%|█████▎    | 32/60 [00:00<00:00, 104.58it/s]
+OCR-rec Predict:  80%|████████  | 48/60 [00:00<00:00, 66.80it/s] 
+OCR-rec Predict: 100%|██████████| 60/60 [00:00<00:00, 67.26it/s]
+OCR-rec Predict: 100%|██████████| 60/60 [00:00<00:00, 73.14it/s]
+Processing pages:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.45s/it]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.45s/it]
+2025-09-02 10:00:23.783 | INFO     | mineru.cli.common:_process_output:156 - local output dir is /tmp/tmprggf8t7z/pages_out/p0005/page_0005/ocr
+2025-09-02 10:00:25,983 - mineru.cli - INFO - Ejecutando MinerU: /usr/local/bin/mineru -p /tmp/tmprggf8t7z/pages_src/page_0012.pdf -o /tmp/tmprggf8t7z/pages_out/p0012 -m ocr -b pipeline -l latin -d cuda --vram 1536
+2025-09-02 10:00:42,165 - mineru.cli - INFO - Salida MinerU (tail):
+Ignore import error when loading sglang.srt.models.torch_native_llama. tensor model parallel group is not initialized
+2025-09-02 10:00:30.470 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:124 - Batch 1/1: 1 pages/1 pages
+2025-09-02 10:00:30.471 | INFO     | mineru.backend.pipeline.pipeline_analyze:batch_image_analyze:187 - gpu_memory: 1536 GB, batch_ratio: 16
+2025-09-02 10:00:30.471 | INFO     | mineru.backend.pipeline.model_init:__init__:137 - DocAnalysis init, this may take some times......
+2025-09-02 10:00:33.881 | INFO     | mineru.backend.pipeline.model_init:__init__:182 - DocAnalysis init done!
+2025-09-02 10:00:33.882 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:64 - model init cost: 3.410379648208618
+Layout Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.63it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.63it/s]
+MFD Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.13it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.13it/s]
+MFR Predict: 0it [00:00, ?it/s]
+MFR Predict: 0it [00:00, ?it/s]
+OCR-det latin:   0%|          | 0/3 [00:00<?, ?it/s]
+OCR-det latin:  33%|███▎      | 1/3 [00:00<00:00,  6.99it/s]
+OCR-det latin: 100%|██████████| 3/3 [00:00<00:00, 11.03it/s]
+OCR-det latin: 100%|██████████| 3/3 [00:00<00:00, 10.42it/s]
+Table Predict: 0it [00:00, ?it/s]
+Table Predict: 0it [00:00, ?it/s]
+OCR-rec Predict:   0%|          | 0/50 [00:00<?, ?it/s]
+OCR-rec Predict:  32%|███▏      | 16/50 [00:00<00:00, 101.99it/s]
+OCR-rec Predict:  64%|██████▍   | 32/50 [00:00<00:00, 91.48it/s] 
+OCR-rec Predict:  96%|█████████▌| 48/50 [00:00<00:00, 88.21it/s]
+OCR-rec Predict: 100%|██████████| 50/50 [00:00<00:00, 85.42it/s]
+Processing pages:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.75s/it]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.75s/it]
+2025-09-02 10:00:39.406 | INFO     | mineru.cli.common:_process_output:156 - local output dir is /tmp/tmprggf8t7z/pages_out/p0008/page_0008/ocr
+2025-09-02 10:00:42,168 - mineru.cli - INFO - Ejecutando MinerU: /usr/local/bin/mineru -p /tmp/tmprggf8t7z/pages_src/page_0013.pdf -o /tmp/tmprggf8t7z/pages_out/p0013 -m ocr -b pipeline -l latin -d cuda --vram 1536
+2025-09-02 10:00:43,165 - mineru.cli - INFO - Salida MinerU (tail):
+Ignore import error when loading sglang.srt.models.torch_native_llama. tensor model parallel group is not initialized
+2025-09-02 10:00:30.499 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:124 - Batch 1/1: 1 pages/1 pages
+2025-09-02 10:00:30.499 | INFO     | mineru.backend.pipeline.pipeline_analyze:batch_image_analyze:187 - gpu_memory: 1536 GB, batch_ratio: 16
+2025-09-02 10:00:30.500 | INFO     | mineru.backend.pipeline.model_init:__init__:137 - DocAnalysis init, this may take some times......
+2025-09-02 10:00:33.875 | INFO     | mineru.backend.pipeline.model_init:__init__:182 - DocAnalysis init done!
+2025-09-02 10:00:33.875 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:64 - model init cost: 3.37539005279541
+Layout Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.56it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.56it/s]
+MFD Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.11it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.11it/s]
+MFR Predict: 0it [00:00, ?it/s]
+MFR Predict: 0it [00:00, ?it/s]
+OCR-det latin:   0%|          | 0/8 [00:00<?, ?it/s]
+OCR-det latin:  25%|██▌       | 2/8 [00:00<00:00,  9.50it/s]
+OCR-det latin:  50%|█████     | 4/8 [00:00<00:00,  9.08it/s]
+OCR-det latin:  62%|██████▎   | 5/8 [00:00<00:00,  8.58it/s]
+OCR-det latin:  88%|████████▊ | 7/8 [00:00<00:00,  9.71it/s]
+OCR-det latin: 100%|██████████| 8/8 [00:00<00:00,  9.79it/s]
+Table Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Table Predict: 100%|██████████| 1/1 [00:00<00:00,  1.47it/s]
+Table Predict: 100%|██████████| 1/1 [00:00<00:00,  1.47it/s]
+OCR-rec Predict:   0%|          | 0/18 [00:00<?, ?it/s]
+OCR-rec Predict:  89%|████████▉ | 16/18 [00:00<00:00, 36.28it/s]
+OCR-rec Predict: 100%|██████████| 18/18 [00:00<00:00, 36.53it/s]
+Processing pages:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.86s/it]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.86s/it]
+2025-09-02 10:00:40.646 | INFO     | mineru.cli.common:_process_output:156 - local output dir is /tmp/tmprggf8t7z/pages_out/p0007/page_0007/ocr
+2025-09-02 10:00:43,167 - mineru.cli - INFO - Ejecutando MinerU: /usr/local/bin/mineru -p /tmp/tmprggf8t7z/pages_src/page_0014.pdf -o /tmp/tmprggf8t7z/pages_out/p0014 -m ocr -b pipeline -l latin -d cuda --vram 1536
+2025-09-02 10:00:44,393 - mineru.cli - INFO - Salida MinerU (tail):
+Ignore import error when loading sglang.srt.models.torch_native_llama. tensor model parallel group is not initialized
+2025-09-02 10:00:30.984 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:124 - Batch 1/1: 1 pages/1 pages
+2025-09-02 10:00:30.985 | INFO     | mineru.backend.pipeline.pipeline_analyze:batch_image_analyze:187 - gpu_memory: 1536 GB, batch_ratio: 16
+2025-09-02 10:00:30.986 | INFO     | mineru.backend.pipeline.model_init:__init__:137 - DocAnalysis init, this may take some times......
+2025-09-02 10:00:34.322 | INFO     | mineru.backend.pipeline.model_init:__init__:182 - DocAnalysis init done!
+2025-09-02 10:00:34.322 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:64 - model init cost: 3.336028814315796
+Layout Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.94it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.93it/s]
+MFD Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.14it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.14it/s]
+MFR Predict:   0%|          | 0/7 [00:00<?, ?it/s]
+MFR Predict:  57%|█████▋    | 4/7 [00:00<00:00, 14.79it/s]
+MFR Predict: 100%|██████████| 7/7 [00:00<00:00, 14.26it/s]
+MFR Predict: 100%|██████████| 7/7 [00:00<00:00, 14.34it/s]
+OCR-det latin:   0%|          | 0/17 [00:00<?, ?it/s]
+OCR-det latin:  12%|█▏        | 2/17 [00:00<00:01, 10.68it/s]
+OCR-det latin:  24%|██▎       | 4/17 [00:00<00:01,  7.49it/s]
+OCR-det latin:  29%|██▉       | 5/17 [00:00<00:01,  7.33it/s]
+OCR-det latin:  35%|███▌      | 6/17 [00:00<00:01,  6.87it/s]
+OCR-det latin:  41%|████      | 7/17 [00:00<00:01,  6.81it/s]
+OCR-det latin:  53%|█████▎    | 9/17 [00:01<00:00,  9.08it/s]
+OCR-det latin:  65%|██████▍   | 11/17 [00:01<00:00, 10.89it/s]
+OCR-det latin:  76%|███████▋  | 13/17 [00:01<00:00, 12.69it/s]
+OCR-det latin:  88%|████████▊ | 15/17 [00:01<00:00, 13.15it/s]
+OCR-det latin: 100%|██████████| 17/17 [00:01<00:00, 14.14it/s]
+OCR-det latin: 100%|██████████| 17/17 [00:01<00:00, 10.59it/s]
+Table Predict:   0%|          | 0/2 [00:00<?, ?it/s]
+Table Predict:  50%|█████     | 1/2 [00:00<00:00,  2.72it/s]
+Table Predict: 100%|██████████| 2/2 [00:00<00:00,  3.31it/s]
+Table Predict: 100%|██████████| 2/2 [00:00<00:00,  3.21it/s]
+OCR-rec Predict:   0%|          | 0/60 [00:00<?, ?it/s]
+OCR-rec Predict:  53%|█████▎    | 32/60 [00:00<00:00, 138.10it/s]
+OCR-rec Predict:  80%|████████  | 48/60 [00:00<00:00, 93.74it/s] 
+OCR-rec Predict: 100%|██████████| 60/60 [00:00<00:00, 67.00it/s]
+OCR-rec Predict: 100%|██████████| 60/60 [00:00<00:00, 77.63it/s]
+Processing pages:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.26s/it]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.26s/it]
+2025-09-02 10:00:42.113 | INFO     | mineru.cli.common:_process_output:156 - local output dir is /tmp/tmprggf8t7z/pages_out/p0009/page_0009/ocr
+2025-09-02 10:00:44,395 - mineru.cli - INFO - Ejecutando MinerU: /usr/local/bin/mineru -p /tmp/tmprggf8t7z/pages_src/page_0015.pdf -o /tmp/tmprggf8t7z/pages_out/p0015 -m ocr -b pipeline -l latin -d cuda --vram 1536
+2025-09-02 10:00:44,647 - mineru.cli - INFO - Salida MinerU (tail):
+Ignore import error when loading sglang.srt.models.torch_native_llama. tensor model parallel group is not initialized
+2025-09-02 10:00:32.078 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:124 - Batch 1/1: 1 pages/1 pages
+2025-09-02 10:00:32.079 | INFO     | mineru.backend.pipeline.pipeline_analyze:batch_image_analyze:187 - gpu_memory: 1536 GB, batch_ratio: 16
+2025-09-02 10:00:32.079 | INFO     | mineru.backend.pipeline.model_init:__init__:137 - DocAnalysis init, this may take some times......
+2025-09-02 10:00:36.475 | INFO     | mineru.backend.pipeline.model_init:__init__:182 - DocAnalysis init done!
+2025-09-02 10:00:36.475 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:64 - model init cost: 4.395632028579712
+Layout Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.35it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.35it/s]
+MFD Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFD Predict: 100%|██████████| 1/1 [00:01<00:00,  1.20s/it]
+MFD Predict: 100%|██████████| 1/1 [00:01<00:00,  1.20s/it]
+MFR Predict: 0it [00:00, ?it/s]
+MFR Predict: 0it [00:00, ?it/s]
+OCR-det latin:   0%|          | 0/3 [00:00<?, ?it/s]
+OCR-det latin:  33%|███▎      | 1/3 [00:00<00:00,  5.02it/s]
+OCR-det latin: 100%|██████████| 3/3 [00:00<00:00,  8.74it/s]
+OCR-det latin: 100%|██████████| 3/3 [00:00<00:00,  8.13it/s]
+Table Predict: 0it [00:00, ?it/s]
+Table Predict: 0it [00:00, ?it/s]
+OCR-rec Predict:   0%|          | 0/50 [00:00<?, ?it/s]
+OCR-rec Predict:  32%|███▏      | 16/50 [00:00<00:00, 120.27it/s]
+OCR-rec Predict:  64%|██████▍   | 32/50 [00:00<00:00, 106.83it/s]
+OCR-rec Predict:  96%|█████████▌| 48/50 [00:00<00:00, 91.92it/s] 
+OCR-rec Predict: 100%|██████████| 50/50 [00:00<00:00, 92.13it/s]
+Processing pages:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.43s/it]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.43s/it]
+2025-09-02 10:00:42.424 | INFO     | mineru.cli.common:_process_output:156 - local output dir is /tmp/tmprggf8t7z/pages_out/p0012/page_0012/ocr
+2025-09-02 10:00:44,649 - mineru.cli - INFO - Ejecutando MinerU: /usr/local/bin/mineru -p /tmp/tmprggf8t7z/pages_src/page_0016.pdf -o /tmp/tmprggf8t7z/pages_out/p0016 -m ocr -b pipeline -l latin -d cuda --vram 1536
+2025-09-02 10:00:44,881 - mineru.cli - INFO - Salida MinerU (tail):
+Ignore import error when loading sglang.srt.models.torch_native_llama. tensor model parallel group is not initialized
+2025-09-02 10:00:32.046 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:124 - Batch 1/1: 1 pages/1 pages
+2025-09-02 10:00:32.047 | INFO     | mineru.backend.pipeline.pipeline_analyze:batch_image_analyze:187 - gpu_memory: 1536 GB, batch_ratio: 16
+2025-09-02 10:00:32.047 | INFO     | mineru.backend.pipeline.model_init:__init__:137 - DocAnalysis init, this may take some times......
+2025-09-02 10:00:36.436 | INFO     | mineru.backend.pipeline.model_init:__init__:182 - DocAnalysis init done!
+2025-09-02 10:00:36.436 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:64 - model init cost: 4.388792514801025
+Layout Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.40it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.40it/s]
+MFD Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFD Predict: 100%|██████████| 1/1 [00:01<00:00,  1.19s/it]
+MFD Predict: 100%|██████████| 1/1 [00:01<00:00,  1.19s/it]
+MFR Predict: 0it [00:00, ?it/s]
+MFR Predict: 0it [00:00, ?it/s]
+OCR-det latin:   0%|          | 0/9 [00:00<?, ?it/s]
+OCR-det latin:  11%|█         | 1/9 [00:00<00:01,  6.52it/s]
+OCR-det latin:  33%|███▎      | 3/9 [00:00<00:00,  9.81it/s]
+OCR-det latin:  56%|█████▌    | 5/9 [00:00<00:00, 11.81it/s]
+OCR-det latin:  78%|███████▊  | 7/9 [00:00<00:00, 12.94it/s]
+OCR-det latin: 100%|██████████| 9/9 [00:00<00:00, 11.22it/s]
+OCR-det latin: 100%|██████████| 9/9 [00:00<00:00, 11.11it/s]
+Table Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Table Predict: 100%|██████████| 1/1 [00:00<00:00,  1.90it/s]
+Table Predict: 100%|██████████| 1/1 [00:00<00:00,  1.90it/s]
+OCR-rec Predict:   0%|          | 0/43 [00:00<?, ?it/s]
+OCR-rec Predict:  74%|███████▍  | 32/43 [00:00<00:00, 268.12it/s]
+OCR-rec Predict: 100%|██████████| 43/43 [00:00<00:00, 173.64it/s]
+Processing pages:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.40s/it]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.40s/it]
+2025-09-02 10:00:42.702 | INFO     | mineru.cli.common:_process_output:156 - local output dir is /tmp/tmprggf8t7z/pages_out/p0011/page_0011/ocr
+2025-09-02 10:00:44,884 - mineru.cli - INFO - Ejecutando MinerU: /usr/local/bin/mineru -p /tmp/tmprggf8t7z/pages_src/page_0017.pdf -o /tmp/tmprggf8t7z/pages_out/p0017 -m ocr -b pipeline -l latin -d cuda --vram 1536
+2025-09-02 10:00:45,988 - mineru.cli - INFO - Salida MinerU (tail):
+Ignore import error when loading sglang.srt.models.torch_native_llama. tensor model parallel group is not initialized
+2025-09-02 10:00:32.054 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:124 - Batch 1/1: 1 pages/1 pages
+2025-09-02 10:00:32.055 | INFO     | mineru.backend.pipeline.pipeline_analyze:batch_image_analyze:187 - gpu_memory: 1536 GB, batch_ratio: 16
+2025-09-02 10:00:32.055 | INFO     | mineru.backend.pipeline.model_init:__init__:137 - DocAnalysis init, this may take some times......
+2025-09-02 10:00:36.460 | INFO     | mineru.backend.pipeline.model_init:__init__:182 - DocAnalysis init done!
+2025-09-02 10:00:36.460 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:64 - model init cost: 4.4046642780303955
+Layout Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.25it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.25it/s]
+MFD Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFD Predict: 100%|██████████| 1/1 [00:01<00:00,  1.23s/it]
+MFD Predict: 100%|██████████| 1/1 [00:01<00:00,  1.23s/it]
+MFR Predict:   0%|          | 0/54 [00:00<?, ?it/s]
+MFR Predict:  59%|█████▉    | 32/54 [00:00<00:00, 37.08it/s]
+MFR Predict: 100%|██████████| 54/54 [00:02<00:00, 19.73it/s]
+MFR Predict: 100%|██████████| 54/54 [00:02<00:00, 21.50it/s]
+OCR-det latin:   0%|          | 0/4 [00:00<?, ?it/s]
+OCR-det latin:  50%|█████     | 2/4 [00:00<00:00, 11.79it/s]
+OCR-det latin: 100%|██████████| 4/4 [00:00<00:00,  9.03it/s]
+OCR-det latin: 100%|██████████| 4/4 [00:00<00:00,  9.35it/s]
+Table Predict: 0it [00:00, ?it/s]
+Table Predict: 0it [00:00, ?it/s]
+OCR-rec Predict:   0%|          | 0/116 [00:00<?, ?it/s]
+OCR-rec Predict:  28%|██▊       | 32/116 [00:00<00:00, 263.89it/s]
+OCR-rec Predict:  55%|█████▌    | 64/116 [00:00<00:00, 291.34it/s]
+OCR-rec Predict:  83%|████████▎ | 96/116 [00:00<00:00, 214.43it/s]
+OCR-rec Predict: 100%|██████████| 116/116 [00:00<00:00, 185.66it/s]
+Processing pages:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.12s/it]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.12s/it]
+2025-09-02 10:00:43.964 | INFO     | mineru.cli.common:_process_output:156 - local output dir is /tmp/tmprggf8t7z/pages_out/p0010/page_0010/ocr
+2025-09-02 10:00:58,563 - mineru.cli - INFO - Salida MinerU (tail):
+Ignore import error when loading sglang.srt.models.torch_native_llama. tensor model parallel group is not initialized
+2025-09-02 10:00:47.843 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:124 - Batch 1/1: 1 pages/1 pages
+2025-09-02 10:00:47.844 | INFO     | mineru.backend.pipeline.pipeline_analyze:batch_image_analyze:187 - gpu_memory: 1536 GB, batch_ratio: 16
+2025-09-02 10:00:47.844 | INFO     | mineru.backend.pipeline.model_init:__init__:137 - DocAnalysis init, this may take some times......
+2025-09-02 10:00:50.688 | INFO     | mineru.backend.pipeline.model_init:__init__:182 - DocAnalysis init done!
+2025-09-02 10:00:50.688 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:64 - model init cost: 2.8443763256073
+Layout Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  2.08it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  2.08it/s]
+MFD Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.87it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.86it/s]
+MFR Predict:   0%|          | 0/2 [00:00<?, ?it/s]
+MFR Predict: 100%|██████████| 2/2 [00:00<00:00,  6.78it/s]
+MFR Predict: 100%|██████████| 2/2 [00:00<00:00,  6.77it/s]
+OCR-det latin:   0%|          | 0/8 [00:00<?, ?it/s]
+OCR-det latin:  25%|██▌       | 2/8 [00:00<00:00, 12.79it/s]
+OCR-det latin:  50%|█████     | 4/8 [00:00<00:00, 14.87it/s]
+OCR-det latin:  75%|███████▌  | 6/8 [00:00<00:00, 15.22it/s]
+OCR-det latin: 100%|██████████| 8/8 [00:00<00:00, 16.80it/s]
+OCR-det latin: 100%|██████████| 8/8 [00:00<00:00, 15.89it/s]
+Table Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Table Predict: 100%|██████████| 1/1 [00:00<00:00,  2.20it/s]
+Table Predict: 100%|██████████| 1/1 [00:00<00:00,  2.20it/s]
+OCR-rec Predict:   0%|          | 0/53 [00:00<?, ?it/s]
+OCR-rec Predict:  60%|██████    | 32/53 [00:00<00:00, 189.28it/s]
+OCR-rec Predict: 100%|██████████| 53/53 [00:00<00:00, 106.70it/s]
+OCR-rec Predict: 100%|██████████| 53/53 [00:00<00:00, 115.81it/s]
+Processing pages:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.39s/it]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.39s/it]
+2025-09-02 10:00:56.033 | INFO     | mineru.cli.common:_process_output:156 - local output dir is /tmp/tmprggf8t7z/pages_out/p0013/page_0013/ocr
+2025-09-02 10:01:00,447 - mineru.cli - INFO - Salida MinerU (tail):
+Ignore import error when loading sglang.srt.models.torch_native_llama. tensor model parallel group is not initialized
+2025-09-02 10:00:48.733 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:124 - Batch 1/1: 1 pages/1 pages
+2025-09-02 10:00:48.733 | INFO     | mineru.backend.pipeline.pipeline_analyze:batch_image_analyze:187 - gpu_memory: 1536 GB, batch_ratio: 16
+2025-09-02 10:00:48.734 | INFO     | mineru.backend.pipeline.model_init:__init__:137 - DocAnalysis init, this may take some times......
+2025-09-02 10:00:51.730 | INFO     | mineru.backend.pipeline.model_init:__init__:182 - DocAnalysis init done!
+2025-09-02 10:00:51.730 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:64 - model init cost: 2.9967589378356934
+Layout Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  2.26it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  2.25it/s]
+MFD Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.53it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.53it/s]
+MFR Predict:   0%|          | 0/32 [00:00<?, ?it/s]
+MFR Predict: 100%|██████████| 32/32 [00:01<00:00, 22.12it/s]
+MFR Predict: 100%|██████████| 32/32 [00:01<00:00, 22.11it/s]
+OCR-det latin:   0%|          | 0/5 [00:00<?, ?it/s]
+OCR-det latin:  20%|██        | 1/5 [00:00<00:00,  7.35it/s]
+OCR-det latin:  60%|██████    | 3/5 [00:00<00:00, 12.21it/s]
+OCR-det latin: 100%|██████████| 5/5 [00:00<00:00, 13.75it/s]
+OCR-det latin: 100%|██████████| 5/5 [00:00<00:00, 12.82it/s]
+Table Predict: 0it [00:00, ?it/s]
+Table Predict: 0it [00:00, ?it/s]
+OCR-rec Predict:   0%|          | 0/69 [00:00<?, ?it/s]
+OCR-rec Predict:  46%|████▋     | 32/69 [00:00<00:00, 241.94it/s]
+OCR-rec Predict:  93%|█████████▎| 64/69 [00:00<00:00, 118.30it/s]
+OCR-rec Predict: 100%|██████████| 69/69 [00:00<00:00, 119.40it/s]
+Processing pages:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.08s/it]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.08s/it]
+2025-09-02 10:00:58.031 | INFO     | mineru.cli.common:_process_output:156 - local output dir is /tmp/tmprggf8t7z/pages_out/p0014/page_0014/ocr
+2025-09-02 10:01:00,749 - mineru.cli - INFO - Salida MinerU (tail):
+Ignore import error when loading sglang.srt.models.torch_native_llama. tensor model parallel group is not initialized
+2025-09-02 10:00:50.071 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:124 - Batch 1/1: 1 pages/1 pages
+2025-09-02 10:00:50.072 | INFO     | mineru.backend.pipeline.pipeline_analyze:batch_image_analyze:187 - gpu_memory: 1536 GB, batch_ratio: 16
+2025-09-02 10:00:50.072 | INFO     | mineru.backend.pipeline.model_init:__init__:137 - DocAnalysis init, this may take some times......
+2025-09-02 10:00:53.487 | INFO     | mineru.backend.pipeline.model_init:__init__:182 - DocAnalysis init done!
+2025-09-02 10:00:53.487 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:64 - model init cost: 3.415323257446289
+Layout Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.66it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.66it/s]
+MFD Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.29it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.29it/s]
+MFR Predict: 0it [00:00, ?it/s]
+MFR Predict: 0it [00:00, ?it/s]
+OCR-det latin:   0%|          | 0/9 [00:00<?, ?it/s]
+OCR-det latin:  11%|█         | 1/9 [00:00<00:00,  9.24it/s]
+OCR-det latin:  44%|████▍     | 4/9 [00:00<00:00, 15.64it/s]
+OCR-det latin:  67%|██████▋   | 6/9 [00:00<00:00, 16.13it/s]
+OCR-det latin:  89%|████████▉ | 8/9 [00:00<00:00, 15.04it/s]
+OCR-det latin: 100%|██████████| 9/9 [00:00<00:00, 15.03it/s]
+Table Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Table Predict: 100%|██████████| 1/1 [00:00<00:00,  2.99it/s]
+Table Predict: 100%|██████████| 1/1 [00:00<00:00,  2.99it/s]
+OCR-rec Predict:   0%|          | 0/40 [00:00<?, ?it/s]
+OCR-rec Predict:  80%|████████  | 32/40 [00:00<00:00, 263.79it/s]
+OCR-rec Predict: 100%|██████████| 40/40 [00:00<00:00, 187.23it/s]
+Processing pages:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.18s/it]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.18s/it]
+2025-09-02 10:00:58.554 | INFO     | mineru.cli.common:_process_output:156 - local output dir is /tmp/tmprggf8t7z/pages_out/p0015/page_0015/ocr
+2025-09-02 10:01:01,115 - mineru.cli - INFO - Salida MinerU (tail):
+Ignore import error when loading sglang.srt.models.torch_native_llama. tensor model parallel group is not initialized
+2025-09-02 10:00:50.556 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:124 - Batch 1/1: 1 pages/1 pages
+2025-09-02 10:00:50.556 | INFO     | mineru.backend.pipeline.pipeline_analyze:batch_image_analyze:187 - gpu_memory: 1536 GB, batch_ratio: 16
+2025-09-02 10:00:50.556 | INFO     | mineru.backend.pipeline.model_init:__init__:137 - DocAnalysis init, this may take some times......
+2025-09-02 10:00:54.292 | INFO     | mineru.backend.pipeline.model_init:__init__:182 - DocAnalysis init done!
+2025-09-02 10:00:54.293 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:64 - model init cost: 3.7362518310546875
+Layout Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.72it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.72it/s]
+MFD Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.33it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.33it/s]
+MFR Predict: 0it [00:00, ?it/s]
+MFR Predict: 0it [00:00, ?it/s]
+OCR-det latin:   0%|          | 0/3 [00:00<?, ?it/s]
+OCR-det latin:  33%|███▎      | 1/3 [00:00<00:00,  7.45it/s]
+OCR-det latin: 100%|██████████| 3/3 [00:00<00:00, 11.20it/s]
+OCR-det latin: 100%|██████████| 3/3 [00:00<00:00, 10.65it/s]
+Table Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Table Predict: 100%|██████████| 1/1 [00:00<00:00,  2.99it/s]
+Table Predict: 100%|██████████| 1/1 [00:00<00:00,  2.99it/s]
+OCR-rec Predict:   0%|          | 0/8 [00:00<?, ?it/s]
+OCR-rec Predict: 100%|██████████| 8/8 [00:00<00:00, 169.02it/s]
+Processing pages:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.19s/it]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.19s/it]
+2025-09-02 10:00:58.976 | INFO     | mineru.cli.common:_process_output:156 - local output dir is /tmp/tmprggf8t7z/pages_out/p0017/page_0017/ocr
+2025-09-02 10:01:02,093 - mineru.cli - INFO - Salida MinerU (tail):
+Ignore import error when loading sglang.srt.models.torch_native_llama. tensor model parallel group is not initialized
+2025-09-02 10:00:50.344 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:124 - Batch 1/1: 1 pages/1 pages
+2025-09-02 10:00:50.344 | INFO     | mineru.backend.pipeline.pipeline_analyze:batch_image_analyze:187 - gpu_memory: 1536 GB, batch_ratio: 16
+2025-09-02 10:00:50.345 | INFO     | mineru.backend.pipeline.model_init:__init__:137 - DocAnalysis init, this may take some times......
+2025-09-02 10:00:54.208 | INFO     | mineru.backend.pipeline.model_init:__init__:182 - DocAnalysis init done!
+2025-09-02 10:00:54.208 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:64 - model init cost: 3.8635716438293457
+Layout Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.68it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.68it/s]
+MFD Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.20it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.20it/s]
+MFR Predict:   0%|          | 0/2 [00:00<?, ?it/s]
+MFR Predict: 100%|██████████| 2/2 [00:00<00:00,  7.13it/s]
+MFR Predict: 100%|██████████| 2/2 [00:00<00:00,  7.12it/s]
+OCR-det latin:   0%|          | 0/26 [00:00<?, ?it/s]
+OCR-det latin:   8%|▊         | 2/26 [00:00<00:01, 13.35it/s]
+OCR-det latin:  15%|█▌        | 4/26 [00:00<00:01, 16.19it/s]
+OCR-det latin:  23%|██▎       | 6/26 [00:00<00:01, 17.00it/s]
+OCR-det latin:  35%|███▍      | 9/26 [00:00<00:00, 19.35it/s]
+OCR-det latin:  46%|████▌     | 12/26 [00:00<00:00, 20.23it/s]
+OCR-det latin:  58%|█████▊    | 15/26 [00:00<00:00, 20.01it/s]
+OCR-det latin:  69%|██████▉   | 18/26 [00:00<00:00, 19.54it/s]
+OCR-det latin:  77%|███████▋  | 20/26 [00:01<00:00, 19.38it/s]
+OCR-det latin:  85%|████████▍ | 22/26 [00:01<00:00, 19.38it/s]
+OCR-det latin:  96%|█████████▌| 25/26 [00:01<00:00, 19.48it/s]
+OCR-det latin: 100%|██████████| 26/26 [00:01<00:00, 19.09it/s]
+Table Predict: 0it [00:00, ?it/s]
+Table Predict: 0it [00:00, ?it/s]
+OCR-rec Predict:   0%|          | 0/98 [00:00<?, ?it/s]
+OCR-rec Predict:  33%|███▎      | 32/98 [00:00<00:00, 292.55it/s]
+OCR-rec Predict:  65%|██████▌   | 64/98 [00:00<00:00, 259.64it/s]
+OCR-rec Predict:  98%|█████████▊| 96/98 [00:00<00:00, 180.17it/s]
+OCR-rec Predict: 100%|██████████| 98/98 [00:00<00:00, 184.71it/s]
+Processing pages:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing pages: 100%|██████████| 1/1 [00:00<00:00,  1.03it/s]
+Processing pages: 100%|██████████| 1/1 [00:00<00:00,  1.03it/s]
+2025-09-02 10:01:00.296 | INFO     | mineru.cli.common:_process_output:156 - local output dir is /tmp/tmprggf8t7z/pages_out/p0016/page_0016/ocr
+2025-09-02 10:01:13,649 - mineru.cli - INFO - Ejecutando MinerU: /usr/local/bin/mineru -p /tmp/tmp4uo7m_0h/pages_src/page_0001.pdf -o /tmp/tmp4uo7m_0h/pages_out/p0001 -m ocr -b pipeline -l latin -d cuda --vram 1536
+2025-09-02 10:01:13,949 - mineru.cli - INFO - Ejecutando MinerU: /usr/local/bin/mineru -p /tmp/tmp4uo7m_0h/pages_src/page_0002.pdf -o /tmp/tmp4uo7m_0h/pages_out/p0002 -m ocr -b pipeline -l latin -d cuda --vram 1536
+2025-09-02 10:01:14,249 - mineru.cli - INFO - Ejecutando MinerU: /usr/local/bin/mineru -p /tmp/tmp4uo7m_0h/pages_src/page_0003.pdf -o /tmp/tmp4uo7m_0h/pages_out/p0003 -m ocr -b pipeline -l latin -d cuda --vram 1536
+2025-09-02 10:01:14,549 - mineru.cli - INFO - Ejecutando MinerU: /usr/local/bin/mineru -p /tmp/tmp4uo7m_0h/pages_src/page_0004.pdf -o /tmp/tmp4uo7m_0h/pages_out/p0004 -m ocr -b pipeline -l latin -d cuda --vram 1536
+2025-09-02 10:01:14,849 - mineru.cli - INFO - Ejecutando MinerU: /usr/local/bin/mineru -p /tmp/tmp4uo7m_0h/pages_src/page_0005.pdf -o /tmp/tmp4uo7m_0h/pages_out/p0005 -m ocr -b pipeline -l latin -d cuda --vram 1536
+2025-09-02 10:01:15,148 - mineru.cli - INFO - Ejecutando MinerU: /usr/local/bin/mineru -p /tmp/tmp4uo7m_0h/pages_src/page_0006.pdf -o /tmp/tmp4uo7m_0h/pages_out/p0006 -m ocr -b pipeline -l latin -d cuda --vram 1536
+2025-09-02 10:01:32,026 - mineru.cli - INFO - Salida MinerU (tail):
+Ignore import error when loading sglang.srt.models.torch_native_llama. tensor model parallel group is not initialized
+2025-09-02 10:01:20.299 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:124 - Batch 1/1: 1 pages/1 pages
+2025-09-02 10:01:20.300 | INFO     | mineru.backend.pipeline.pipeline_analyze:batch_image_analyze:187 - gpu_memory: 1536 GB, batch_ratio: 16
+2025-09-02 10:01:20.300 | INFO     | mineru.backend.pipeline.model_init:__init__:137 - DocAnalysis init, this may take some times......
+2025-09-02 10:01:23.839 | INFO     | mineru.backend.pipeline.model_init:__init__:182 - DocAnalysis init done!
+2025-09-02 10:01:23.839 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:64 - model init cost: 3.5391807556152344
+Layout Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.54it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.54it/s]
+MFD Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.05it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.05it/s]
+MFR Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFR Predict: 100%|██████████| 1/1 [00:00<00:00,  2.27it/s]
+MFR Predict: 100%|██████████| 1/1 [00:00<00:00,  2.27it/s]
+OCR-det latin:   0%|          | 0/3 [00:00<?, ?it/s]
+OCR-det latin:  33%|███▎      | 1/3 [00:00<00:00,  5.48it/s]
+OCR-det latin:  67%|██████▋   | 2/3 [00:00<00:00,  6.05it/s]
+OCR-det latin: 100%|██████████| 3/3 [00:00<00:00,  6.96it/s]
+Table Predict: 0it [00:00, ?it/s]
+Table Predict: 0it [00:00, ?it/s]
+OCR-rec Predict:   0%|          | 0/8 [00:00<?, ?it/s]
+OCR-rec Predict: 100%|██████████| 8/8 [00:00<00:00, 27.42it/s]
+OCR-rec Predict: 100%|██████████| 8/8 [00:00<00:00, 27.40it/s]
+Processing pages:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.38s/it]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.38s/it]
+2025-09-02 10:01:29.634 | INFO     | mineru.cli.common:_process_output:156 - local output dir is /tmp/tmp4uo7m_0h/pages_out/p0004/page_0004/ocr
+2025-09-02 10:01:32,029 - mineru.cli - INFO - Ejecutando MinerU: /usr/local/bin/mineru -p /tmp/tmp4uo7m_0h/pages_src/page_0007.pdf -o /tmp/tmp4uo7m_0h/pages_out/p0007 -m ocr -b pipeline -l latin -d cuda --vram 1536
+2025-09-02 10:01:32,366 - mineru.cli - INFO - Salida MinerU (tail):
+Ignore import error when loading sglang.srt.models.torch_native_llama. tensor model parallel group is not initialized
+2025-09-02 10:01:20.071 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:124 - Batch 1/1: 1 pages/1 pages
+2025-09-02 10:01:20.071 | INFO     | mineru.backend.pipeline.pipeline_analyze:batch_image_analyze:187 - gpu_memory: 1536 GB, batch_ratio: 16
+2025-09-02 10:01:20.071 | INFO     | mineru.backend.pipeline.model_init:__init__:137 - DocAnalysis init, this may take some times......
+2025-09-02 10:01:23.183 | INFO     | mineru.backend.pipeline.model_init:__init__:182 - DocAnalysis init done!
+2025-09-02 10:01:23.183 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:64 - model init cost: 3.1117546558380127
+Layout Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.70it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.70it/s]
+MFD Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.12it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.12it/s]
+MFR Predict: 0it [00:00, ?it/s]
+MFR Predict: 0it [00:00, ?it/s]
+OCR-det latin:   0%|          | 0/9 [00:00<?, ?it/s]
+OCR-det latin:  11%|█         | 1/9 [00:00<00:00,  8.90it/s]
+OCR-det latin:  33%|███▎      | 3/9 [00:00<00:00, 12.84it/s]
+OCR-det latin:  56%|█████▌    | 5/9 [00:00<00:00, 12.54it/s]
+OCR-det latin:  78%|███████▊  | 7/9 [00:00<00:00, 13.19it/s]
+OCR-det latin: 100%|██████████| 9/9 [00:00<00:00, 14.41it/s]
+OCR-det latin: 100%|██████████| 9/9 [00:00<00:00, 13.52it/s]
+Table Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Table Predict: 100%|██████████| 1/1 [00:00<00:00,  1.68it/s]
+Table Predict: 100%|██████████| 1/1 [00:00<00:00,  1.68it/s]
+OCR-rec Predict:   0%|          | 0/40 [00:00<?, ?it/s]
+OCR-rec Predict:  40%|████      | 16/40 [00:00<00:00, 108.11it/s]
+OCR-rec Predict:  80%|████████  | 32/40 [00:00<00:00, 109.46it/s]
+OCR-rec Predict: 100%|██████████| 40/40 [00:00<00:00, 78.20it/s] 
+Processing pages:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.47s/it]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.47s/it]
+2025-09-02 10:01:30.028 | INFO     | mineru.cli.common:_process_output:156 - local output dir is /tmp/tmp4uo7m_0h/pages_out/p0003/page_0003/ocr
+2025-09-02 10:01:32,370 - mineru.cli - INFO - Ejecutando MinerU: /usr/local/bin/mineru -p /tmp/tmp4uo7m_0h/pages_src/page_0008.pdf -o /tmp/tmp4uo7m_0h/pages_out/p0008 -m ocr -b pipeline -l latin -d cuda --vram 1536
+2025-09-02 10:01:33,158 - mineru.cli - INFO - Salida MinerU (tail):
+Ignore import error when loading sglang.srt.models.torch_native_llama. tensor model parallel group is not initialized
+2025-09-02 10:01:19.563 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:124 - Batch 1/1: 1 pages/1 pages
+2025-09-02 10:01:19.564 | INFO     | mineru.backend.pipeline.pipeline_analyze:batch_image_analyze:187 - gpu_memory: 1536 GB, batch_ratio: 16
+2025-09-02 10:01:19.564 | INFO     | mineru.backend.pipeline.model_init:__init__:137 - DocAnalysis init, this may take some times......
+2025-09-02 10:01:22.937 | INFO     | mineru.backend.pipeline.model_init:__init__:182 - DocAnalysis init done!
+2025-09-02 10:01:22.937 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:64 - model init cost: 3.373243808746338
+Layout Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.97it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.97it/s]
+MFD Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.05it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.05it/s]
+MFR Predict:   0%|          | 0/47 [00:00<?, ?it/s]
+MFR Predict:  68%|██████▊   | 32/47 [00:01<00:00, 31.92it/s]
+MFR Predict: 100%|██████████| 47/47 [00:01<00:00, 26.98it/s]
+MFR Predict: 100%|██████████| 47/47 [00:01<00:00, 27.86it/s]
+OCR-det latin:   0%|          | 0/5 [00:00<?, ?it/s]
+OCR-det latin:  40%|████      | 2/5 [00:00<00:00,  8.66it/s]
+OCR-det latin:  60%|██████    | 3/5 [00:00<00:00,  8.22it/s]
+OCR-det latin: 100%|██████████| 5/5 [00:00<00:00,  8.36it/s]
+OCR-det latin: 100%|██████████| 5/5 [00:00<00:00,  8.37it/s]
+Table Predict: 0it [00:00, ?it/s]
+Table Predict: 0it [00:00, ?it/s]
+OCR-rec Predict:   0%|          | 0/75 [00:00<?, ?it/s]
+OCR-rec Predict:  21%|██▏       | 16/75 [00:00<00:00, 101.80it/s]
+OCR-rec Predict:  43%|████▎     | 32/75 [00:00<00:00, 116.79it/s]
+OCR-rec Predict:  64%|██████▍   | 48/75 [00:00<00:00, 107.07it/s]
+OCR-rec Predict:  85%|████████▌ | 64/75 [00:00<00:00, 70.27it/s] 
+OCR-rec Predict: 100%|██████████| 75/75 [00:01<00:00, 52.31it/s]
+OCR-rec Predict: 100%|██████████| 75/75 [00:01<00:00, 65.73it/s]
+Processing pages:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.32s/it]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.32s/it]
+2025-09-02 10:01:30.834 | INFO     | mineru.cli.common:_process_output:156 - local output dir is /tmp/tmp4uo7m_0h/pages_out/p0002/page_0002/ocr
+2025-09-02 10:01:33,160 - mineru.cli - INFO - Ejecutando MinerU: /usr/local/bin/mineru -p /tmp/tmp4uo7m_0h/pages_src/page_0009.pdf -o /tmp/tmp4uo7m_0h/pages_out/p0009 -m ocr -b pipeline -l latin -d cuda --vram 1536
+2025-09-02 10:01:33,205 - mineru.cli - INFO - Salida MinerU (tail):
+Ignore import error when loading sglang.srt.models.torch_native_llama. tensor model parallel group is not initialized
+2025-09-02 10:01:19.313 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:124 - Batch 1/1: 1 pages/1 pages
+2025-09-02 10:01:19.314 | INFO     | mineru.backend.pipeline.pipeline_analyze:batch_image_analyze:187 - gpu_memory: 1536 GB, batch_ratio: 16
+2025-09-02 10:01:19.314 | INFO     | mineru.backend.pipeline.model_init:__init__:137 - DocAnalysis init, this may take some times......
+2025-09-02 10:01:22.600 | INFO     | mineru.backend.pipeline.model_init:__init__:182 - DocAnalysis init done!
+2025-09-02 10:01:22.600 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:64 - model init cost: 3.285935878753662
+Layout Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  2.02it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  2.02it/s]
+MFD Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.13it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.13it/s]
+MFR Predict:   0%|          | 0/3 [00:00<?, ?it/s]
+MFR Predict:  67%|██████▋   | 2/3 [00:00<00:00,  3.87it/s]
+MFR Predict: 100%|██████████| 3/3 [00:00<00:00,  4.33it/s]
+MFR Predict: 100%|██████████| 3/3 [00:00<00:00,  4.23it/s]
+OCR-det latin:   0%|          | 0/11 [00:00<?, ?it/s]
+OCR-det latin:   9%|▉         | 1/11 [00:00<00:01,  7.89it/s]
+OCR-det latin:  27%|██▋       | 3/11 [00:00<00:00, 14.23it/s]
+OCR-det latin:  45%|████▌     | 5/11 [00:00<00:00, 13.69it/s]
+OCR-det latin:  64%|██████▎   | 7/11 [00:00<00:00, 14.08it/s]
+OCR-det latin:  82%|████████▏ | 9/11 [00:00<00:00, 14.03it/s]
+OCR-det latin: 100%|██████████| 11/11 [00:00<00:00, 14.52it/s]
+Table Predict:   0%|          | 0/4 [00:00<?, ?it/s]
+Table Predict:  25%|██▌       | 1/4 [00:00<00:00,  4.64it/s]
+Table Predict:  50%|█████     | 2/4 [00:00<00:00,  3.72it/s]
+Table Predict:  75%|███████▌  | 3/4 [00:00<00:00,  3.69it/s]
+Table Predict: 100%|██████████| 4/4 [00:01<00:00,  2.84it/s]
+Table Predict: 100%|██████████| 4/4 [00:01<00:00,  3.14it/s]
+OCR-rec Predict:   0%|          | 0/37 [00:00<?, ?it/s]
+OCR-rec Predict:  43%|████▎     | 16/37 [00:00<00:00, 141.72it/s]
+OCR-rec Predict:  86%|████████▋ | 32/37 [00:00<00:00, 51.00it/s] 
+OCR-rec Predict: 100%|██████████| 37/37 [00:00<00:00, 56.03it/s]
+Processing pages:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.38s/it]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.38s/it]
+2025-09-02 10:01:30.865 | INFO     | mineru.cli.common:_process_output:156 - local output dir is /tmp/tmp4uo7m_0h/pages_out/p0001/page_0001/ocr
+2025-09-02 10:01:33,208 - mineru.cli - INFO - Ejecutando MinerU: /usr/local/bin/mineru -p /tmp/tmp4uo7m_0h/pages_src/page_0010.pdf -o /tmp/tmp4uo7m_0h/pages_out/p0010 -m ocr -b pipeline -l latin -d cuda --vram 1536
+2025-09-02 10:01:34,043 - mineru.cli - INFO - Salida MinerU (tail):
+Ignore import error when loading sglang.srt.models.torch_native_llama. tensor model parallel group is not initialized
+2025-09-02 10:01:20.730 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:124 - Batch 1/1: 1 pages/1 pages
+2025-09-02 10:01:20.730 | INFO     | mineru.backend.pipeline.pipeline_analyze:batch_image_analyze:187 - gpu_memory: 1536 GB, batch_ratio: 16
+2025-09-02 10:01:20.730 | INFO     | mineru.backend.pipeline.model_init:__init__:137 - DocAnalysis init, this may take some times......
+2025-09-02 10:01:24.203 | INFO     | mineru.backend.pipeline.model_init:__init__:182 - DocAnalysis init done!
+2025-09-02 10:01:24.203 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:64 - model init cost: 3.4724020957946777
+Layout Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.60it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.60it/s]
+MFD Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.07it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.07it/s]
+MFR Predict:   0%|          | 0/6 [00:00<?, ?it/s]
+MFR Predict:  67%|██████▋   | 4/6 [00:00<00:00,  8.69it/s]
+MFR Predict: 100%|██████████| 6/6 [00:00<00:00, 10.95it/s]
+MFR Predict: 100%|██████████| 6/6 [00:00<00:00, 10.40it/s]
+OCR-det latin:   0%|          | 0/17 [00:00<?, ?it/s]
+OCR-det latin:   6%|▌         | 1/17 [00:00<00:01,  8.10it/s]
+OCR-det latin:  12%|█▏        | 2/17 [00:00<00:02,  6.55it/s]
+OCR-det latin:  18%|█▊        | 3/17 [00:00<00:01,  7.19it/s]
+OCR-det latin:  29%|██▉       | 5/17 [00:00<00:01, 10.25it/s]
+OCR-det latin:  47%|████▋     | 8/17 [00:00<00:00, 14.11it/s]
+OCR-det latin:  59%|█████▉    | 10/17 [00:00<00:00, 15.46it/s]
+OCR-det latin:  76%|███████▋  | 13/17 [00:00<00:00, 18.58it/s]
+OCR-det latin:  88%|████████▊ | 15/17 [00:01<00:00, 18.78it/s]
+OCR-det latin: 100%|██████████| 17/17 [00:01<00:00, 18.77it/s]
+OCR-det latin: 100%|██████████| 17/17 [00:01<00:00, 15.03it/s]
+Table Predict:   0%|          | 0/2 [00:00<?, ?it/s]
+Table Predict:  50%|█████     | 1/2 [00:00<00:00,  3.24it/s]
+Table Predict: 100%|██████████| 2/2 [00:00<00:00,  5.06it/s]
+Table Predict: 100%|██████████| 2/2 [00:00<00:00,  4.66it/s]
+OCR-rec Predict:   0%|          | 0/60 [00:00<?, ?it/s]
+OCR-rec Predict:  80%|████████  | 48/60 [00:00<00:00, 190.04it/s]
+OCR-rec Predict: 100%|██████████| 60/60 [00:00<00:00, 139.23it/s]
+Processing pages:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.06s/it]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.06s/it]
+2025-09-02 10:01:31.952 | INFO     | mineru.cli.common:_process_output:156 - local output dir is /tmp/tmp4uo7m_0h/pages_out/p0005/page_0005/ocr
+2025-09-02 10:01:34,046 - mineru.cli - INFO - Ejecutando MinerU: /usr/local/bin/mineru -p /tmp/tmp4uo7m_0h/pages_src/page_0011.pdf -o /tmp/tmp4uo7m_0h/pages_out/p0011 -m ocr -b pipeline -l latin -d cuda --vram 1536
+2025-09-02 10:01:34,673 - mineru.cli - INFO - Salida MinerU (tail):
+Ignore import error when loading sglang.srt.models.torch_native_llama. tensor model parallel group is not initialized
+2025-09-02 10:01:21.186 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:124 - Batch 1/1: 1 pages/1 pages
+2025-09-02 10:01:21.187 | INFO     | mineru.backend.pipeline.pipeline_analyze:batch_image_analyze:187 - gpu_memory: 1536 GB, batch_ratio: 16
+2025-09-02 10:01:21.187 | INFO     | mineru.backend.pipeline.model_init:__init__:137 - DocAnalysis init, this may take some times......
+2025-09-02 10:01:25.764 | INFO     | mineru.backend.pipeline.model_init:__init__:182 - DocAnalysis init done!
+2025-09-02 10:01:25.764 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:64 - model init cost: 4.576305150985718
+Layout Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.85it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.85it/s]
+MFD Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.18it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.18it/s]
+MFR Predict:   0%|          | 0/57 [00:00<?, ?it/s]
+MFR Predict:  56%|█████▌    | 32/57 [00:01<00:01, 22.39it/s]
+MFR Predict: 100%|██████████| 57/57 [00:02<00:00, 21.69it/s]
+MFR Predict: 100%|██████████| 57/57 [00:02<00:00, 21.80it/s]
+OCR-det latin:   0%|          | 0/3 [00:00<?, ?it/s]
+OCR-det latin:  67%|██████▋   | 2/3 [00:00<00:00, 10.89it/s]
+OCR-det latin: 100%|██████████| 3/3 [00:00<00:00,  9.42it/s]
+Table Predict: 0it [00:00, ?it/s]
+Table Predict: 0it [00:00, ?it/s]
+OCR-rec Predict:   0%|          | 0/110 [00:00<?, ?it/s]
+OCR-rec Predict:  44%|████▎     | 48/110 [00:00<00:00, 398.24it/s]
+OCR-rec Predict:  87%|████████▋ | 96/110 [00:00<00:00, 297.88it/s]
+OCR-rec Predict: 100%|██████████| 110/110 [00:00<00:00, 263.85it/s]
+Processing pages:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.05s/it]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.05s/it]
+2025-09-02 10:01:32.724 | INFO     | mineru.cli.common:_process_output:156 - local output dir is /tmp/tmp4uo7m_0h/pages_out/p0006/page_0006/ocr
+2025-09-02 10:01:34,675 - mineru.cli - INFO - Ejecutando MinerU: /usr/local/bin/mineru -p /tmp/tmp4uo7m_0h/pages_src/page_0012.pdf -o /tmp/tmp4uo7m_0h/pages_out/p0012 -m ocr -b pipeline -l latin -d cuda --vram 1536
+2025-09-02 10:01:49,562 - mineru.cli - INFO - Salida MinerU (tail):
+Ignore import error when loading sglang.srt.models.torch_native_llama. tensor model parallel group is not initialized
+2025-09-02 10:01:38.212 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:124 - Batch 1/1: 1 pages/1 pages
+2025-09-02 10:01:38.213 | INFO     | mineru.backend.pipeline.pipeline_analyze:batch_image_analyze:187 - gpu_memory: 1536 GB, batch_ratio: 16
+2025-09-02 10:01:38.213 | INFO     | mineru.backend.pipeline.model_init:__init__:137 - DocAnalysis init, this may take some times......
+2025-09-02 10:01:41.890 | INFO     | mineru.backend.pipeline.model_init:__init__:182 - DocAnalysis init done!
+2025-09-02 10:01:41.891 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:64 - model init cost: 3.6773457527160645
+Layout Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.92it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.92it/s]
+MFD Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.34it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.34it/s]
+MFR Predict: 0it [00:00, ?it/s]
+MFR Predict: 0it [00:00, ?it/s]
+OCR-det latin:   0%|          | 0/3 [00:00<?, ?it/s]
+OCR-det latin:  33%|███▎      | 1/3 [00:00<00:00,  5.30it/s]
+OCR-det latin: 100%|██████████| 3/3 [00:00<00:00, 11.47it/s]
+OCR-det latin: 100%|██████████| 3/3 [00:00<00:00, 10.27it/s]
+Table Predict: 0it [00:00, ?it/s]
+Table Predict: 0it [00:00, ?it/s]
+OCR-rec Predict:   0%|          | 0/50 [00:00<?, ?it/s]
+OCR-rec Predict:  64%|██████▍   | 32/50 [00:00<00:00, 151.76it/s]
+OCR-rec Predict:  96%|█████████▌| 48/50 [00:00<00:00, 107.36it/s]
+OCR-rec Predict: 100%|██████████| 50/50 [00:00<00:00, 103.83it/s]
+Processing pages:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.49s/it]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.49s/it]
+2025-09-02 10:01:47.255 | INFO     | mineru.cli.common:_process_output:156 - local output dir is /tmp/tmp4uo7m_0h/pages_out/p0008/page_0008/ocr
+2025-09-02 10:01:49,565 - mineru.cli - INFO - Ejecutando MinerU: /usr/local/bin/mineru -p /tmp/tmp4uo7m_0h/pages_src/page_0013.pdf -o /tmp/tmp4uo7m_0h/pages_out/p0013 -m ocr -b pipeline -l latin -d cuda --vram 1536
+2025-09-02 10:01:49,938 - mineru.cli - INFO - Salida MinerU (tail):
+Ignore import error when loading sglang.srt.models.torch_native_llama. tensor model parallel group is not initialized
+2025-09-02 10:01:37.861 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:124 - Batch 1/1: 1 pages/1 pages
+2025-09-02 10:01:37.862 | INFO     | mineru.backend.pipeline.pipeline_analyze:batch_image_analyze:187 - gpu_memory: 1536 GB, batch_ratio: 16
+2025-09-02 10:01:37.862 | INFO     | mineru.backend.pipeline.model_init:__init__:137 - DocAnalysis init, this may take some times......
+2025-09-02 10:01:41.544 | INFO     | mineru.backend.pipeline.model_init:__init__:182 - DocAnalysis init done!
+2025-09-02 10:01:41.544 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:64 - model init cost: 3.6817359924316406
+Layout Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.79it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.79it/s]
+MFD Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.57it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.57it/s]
+MFR Predict: 0it [00:00, ?it/s]
+MFR Predict: 0it [00:00, ?it/s]
+OCR-det latin:   0%|          | 0/8 [00:00<?, ?it/s]
+OCR-det latin:  25%|██▌       | 2/8 [00:00<00:00, 12.09it/s]
+OCR-det latin:  50%|█████     | 4/8 [00:00<00:00, 12.35it/s]
+OCR-det latin:  75%|███████▌  | 6/8 [00:00<00:00, 11.58it/s]
+OCR-det latin: 100%|██████████| 8/8 [00:00<00:00, 13.88it/s]
+OCR-det latin: 100%|██████████| 8/8 [00:00<00:00, 13.10it/s]
+Table Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Table Predict: 100%|██████████| 1/1 [00:00<00:00,  1.77it/s]
+Table Predict: 100%|██████████| 1/1 [00:00<00:00,  1.77it/s]
+OCR-rec Predict:   0%|          | 0/18 [00:00<?, ?it/s]
+OCR-rec Predict:  89%|████████▉ | 16/18 [00:00<00:00, 64.60it/s]
+OCR-rec Predict: 100%|██████████| 18/18 [00:00<00:00, 59.89it/s]
+Processing pages:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.48s/it]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.48s/it]
+2025-09-02 10:01:47.635 | INFO     | mineru.cli.common:_process_output:156 - local output dir is /tmp/tmp4uo7m_0h/pages_out/p0007/page_0007/ocr
+2025-09-02 10:01:49,940 - mineru.cli - INFO - Ejecutando MinerU: /usr/local/bin/mineru -p /tmp/tmp4uo7m_0h/pages_src/page_0014.pdf -o /tmp/tmp4uo7m_0h/pages_out/p0014 -m ocr -b pipeline -l latin -d cuda --vram 1536
+2025-09-02 10:01:52,780 - mineru.cli - INFO - Salida MinerU (tail):
+Ignore import error when loading sglang.srt.models.torch_native_llama. tensor model parallel group is not initialized
+2025-09-02 10:01:39.272 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:124 - Batch 1/1: 1 pages/1 pages
+2025-09-02 10:01:39.273 | INFO     | mineru.backend.pipeline.pipeline_analyze:batch_image_analyze:187 - gpu_memory: 1536 GB, batch_ratio: 16
+2025-09-02 10:01:39.273 | INFO     | mineru.backend.pipeline.model_init:__init__:137 - DocAnalysis init, this may take some times......
+2025-09-02 10:01:42.821 | INFO     | mineru.backend.pipeline.model_init:__init__:182 - DocAnalysis init done!
+2025-09-02 10:01:42.821 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:64 - model init cost: 3.548539161682129
+Layout Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.81it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.81it/s]
+MFD Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.13it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.13it/s]
+MFR Predict:   0%|          | 0/54 [00:00<?, ?it/s]
+MFR Predict:  59%|█████▉    | 32/54 [00:01<00:00, 31.49it/s]
+MFR Predict: 100%|██████████| 54/54 [00:02<00:00, 22.57it/s]
+MFR Predict: 100%|██████████| 54/54 [00:02<00:00, 23.77it/s]
+OCR-det latin:   0%|          | 0/4 [00:00<?, ?it/s]
+OCR-det latin:  50%|█████     | 2/4 [00:00<00:00, 14.10it/s]
+OCR-det latin: 100%|██████████| 4/4 [00:00<00:00, 10.48it/s]
+OCR-det latin: 100%|██████████| 4/4 [00:00<00:00, 10.89it/s]
+Table Predict: 0it [00:00, ?it/s]
+Table Predict: 0it [00:00, ?it/s]
+OCR-rec Predict:   0%|          | 0/116 [00:00<?, ?it/s]
+OCR-rec Predict:  28%|██▊       | 32/116 [00:00<00:00, 172.50it/s]
+OCR-rec Predict:  55%|█████▌    | 64/116 [00:00<00:00, 144.61it/s]
+OCR-rec Predict:  69%|██████▉   | 80/116 [00:00<00:00, 128.69it/s]
+OCR-rec Predict:  83%|████████▎ | 96/116 [00:00<00:00, 113.09it/s]
+OCR-rec Predict:  97%|█████████▋| 112/116 [00:01<00:00, 73.37it/s]
+OCR-rec Predict: 100%|██████████| 116/116 [00:01<00:00, 88.71it/s]
+Processing pages:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.15s/it]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.15s/it]
+2025-09-02 10:01:50.502 | INFO     | mineru.cli.common:_process_output:156 - local output dir is /tmp/tmp4uo7m_0h/pages_out/p0010/page_0010/ocr
+2025-09-02 10:01:52,782 - mineru.cli - INFO - Ejecutando MinerU: /usr/local/bin/mineru -p /tmp/tmp4uo7m_0h/pages_src/page_0015.pdf -o /tmp/tmp4uo7m_0h/pages_out/p0015 -m ocr -b pipeline -l latin -d cuda --vram 1536
+2025-09-02 10:01:52,966 - mineru.cli - INFO - Salida MinerU (tail):
+Ignore import error when loading sglang.srt.models.torch_native_llama. tensor model parallel group is not initialized
+2025-09-02 10:01:39.298 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:124 - Batch 1/1: 1 pages/1 pages
+2025-09-02 10:01:39.299 | INFO     | mineru.backend.pipeline.pipeline_analyze:batch_image_analyze:187 - gpu_memory: 1536 GB, batch_ratio: 16
+2025-09-02 10:01:39.299 | INFO     | mineru.backend.pipeline.model_init:__init__:137 - DocAnalysis init, this may take some times......
+2025-09-02 10:01:43.104 | INFO     | mineru.backend.pipeline.model_init:__init__:182 - DocAnalysis init done!
+2025-09-02 10:01:43.104 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:64 - model init cost: 3.804938554763794
+Layout Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.92it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.92it/s]
+MFD Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.18it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.18it/s]
+MFR Predict:   0%|          | 0/7 [00:00<?, ?it/s]
+MFR Predict:  57%|█████▋    | 4/7 [00:00<00:00, 10.29it/s]
+MFR Predict: 100%|██████████| 7/7 [00:00<00:00, 10.03it/s]
+MFR Predict: 100%|██████████| 7/7 [00:00<00:00, 10.07it/s]
+OCR-det latin:   0%|          | 0/17 [00:00<?, ?it/s]
+OCR-det latin:  12%|█▏        | 2/17 [00:00<00:01, 10.23it/s]
+OCR-det latin:  24%|██▎       | 4/17 [00:00<00:00, 13.26it/s]
+OCR-det latin:  35%|███▌      | 6/17 [00:00<00:00, 14.24it/s]
+OCR-det latin:  47%|████▋     | 8/17 [00:00<00:00, 14.42it/s]
+OCR-det latin:  59%|█████▉    | 10/17 [00:00<00:00, 13.70it/s]
+OCR-det latin:  71%|███████   | 12/17 [00:00<00:00, 15.18it/s]
+OCR-det latin:  82%|████████▏ | 14/17 [00:00<00:00, 16.31it/s]
+OCR-det latin:  94%|█████████▍| 16/17 [00:01<00:00, 16.57it/s]
+OCR-det latin: 100%|██████████| 17/17 [00:01<00:00, 14.83it/s]
+Table Predict:   0%|          | 0/2 [00:00<?, ?it/s]
+Table Predict:  50%|█████     | 1/2 [00:00<00:00,  2.17it/s]
+Table Predict: 100%|██████████| 2/2 [00:00<00:00,  3.26it/s]
+Table Predict: 100%|██████████| 2/2 [00:00<00:00,  3.03it/s]
+OCR-rec Predict:   0%|          | 0/60 [00:00<?, ?it/s]
+OCR-rec Predict:  53%|█████▎    | 32/60 [00:00<00:00, 135.27it/s]
+OCR-rec Predict:  80%|████████  | 48/60 [00:00<00:00, 83.84it/s] 
+OCR-rec Predict: 100%|██████████| 60/60 [00:00<00:00, 72.43it/s]
+OCR-rec Predict: 100%|██████████| 60/60 [00:00<00:00, 80.49it/s]
+Processing pages:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.19s/it]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.19s/it]
+2025-09-02 10:01:50.727 | INFO     | mineru.cli.common:_process_output:156 - local output dir is /tmp/tmp4uo7m_0h/pages_out/p0009/page_0009/ocr
+2025-09-02 10:01:52,968 - mineru.cli - INFO - Ejecutando MinerU: /usr/local/bin/mineru -p /tmp/tmp4uo7m_0h/pages_src/page_0016.pdf -o /tmp/tmp4uo7m_0h/pages_out/p0016 -m ocr -b pipeline -l latin -d cuda --vram 1536
+2025-09-02 10:01:53,115 - mineru.cli - INFO - Salida MinerU (tail):
+Ignore import error when loading sglang.srt.models.torch_native_llama. tensor model parallel group is not initialized
+2025-09-02 10:01:40.307 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:124 - Batch 1/1: 1 pages/1 pages
+2025-09-02 10:01:40.308 | INFO     | mineru.backend.pipeline.pipeline_analyze:batch_image_analyze:187 - gpu_memory: 1536 GB, batch_ratio: 16
+2025-09-02 10:01:40.309 | INFO     | mineru.backend.pipeline.model_init:__init__:137 - DocAnalysis init, this may take some times......
+2025-09-02 10:01:45.394 | INFO     | mineru.backend.pipeline.model_init:__init__:182 - DocAnalysis init done!
+2025-09-02 10:01:45.394 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:64 - model init cost: 5.085520029067993
+Layout Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.53it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.53it/s]
+MFD Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.65it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.65it/s]
+MFR Predict: 0it [00:00, ?it/s]
+MFR Predict: 0it [00:00, ?it/s]
+OCR-det latin:   0%|          | 0/9 [00:00<?, ?it/s]
+OCR-det latin:  11%|█         | 1/9 [00:00<00:01,  7.13it/s]
+OCR-det latin:  33%|███▎      | 3/9 [00:00<00:00,  9.71it/s]
+OCR-det latin:  44%|████▍     | 4/9 [00:00<00:00,  8.93it/s]
+OCR-det latin:  56%|█████▌    | 5/9 [00:00<00:00,  8.76it/s]
+OCR-det latin:  78%|███████▊  | 7/9 [00:00<00:00, 10.47it/s]
+OCR-det latin: 100%|██████████| 9/9 [00:00<00:00, 10.44it/s]
+OCR-det latin: 100%|██████████| 9/9 [00:00<00:00,  9.87it/s]
+Table Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Table Predict: 100%|██████████| 1/1 [00:00<00:00,  1.80it/s]
+Table Predict: 100%|██████████| 1/1 [00:00<00:00,  1.80it/s]
+OCR-rec Predict:   0%|          | 0/43 [00:00<?, ?it/s]
+OCR-rec Predict:  74%|███████▍  | 32/43 [00:00<00:00, 230.85it/s]
+OCR-rec Predict: 100%|██████████| 43/43 [00:00<00:00, 172.31it/s]
+Processing pages:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.23s/it]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.23s/it]
+2025-09-02 10:01:50.911 | INFO     | mineru.cli.common:_process_output:156 - local output dir is /tmp/tmp4uo7m_0h/pages_out/p0011/page_0011/ocr
+2025-09-02 10:01:53,118 - mineru.cli - INFO - Ejecutando MinerU: /usr/local/bin/mineru -p /tmp/tmp4uo7m_0h/pages_src/page_0017.pdf -o /tmp/tmp4uo7m_0h/pages_out/p0017 -m ocr -b pipeline -l latin -d cuda --vram 1536
+2025-09-02 10:01:53,729 - mineru.cli - INFO - Salida MinerU (tail):
+Ignore import error when loading sglang.srt.models.torch_native_llama. tensor model parallel group is not initialized
+2025-09-02 10:01:41.225 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:124 - Batch 1/1: 1 pages/1 pages
+2025-09-02 10:01:41.226 | INFO     | mineru.backend.pipeline.pipeline_analyze:batch_image_analyze:187 - gpu_memory: 1536 GB, batch_ratio: 16
+2025-09-02 10:01:41.226 | INFO     | mineru.backend.pipeline.model_init:__init__:137 - DocAnalysis init, this may take some times......
+2025-09-02 10:01:46.730 | INFO     | mineru.backend.pipeline.model_init:__init__:182 - DocAnalysis init done!
+2025-09-02 10:01:46.731 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:64 - model init cost: 5.5045692920684814
+Layout Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.98it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.98it/s]
+MFD Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFD Predict: 100%|██████████| 1/1 [00:01<00:00,  1.05s/it]
+MFD Predict: 100%|██████████| 1/1 [00:01<00:00,  1.05s/it]
+MFR Predict: 0it [00:00, ?it/s]
+MFR Predict: 0it [00:00, ?it/s]
+OCR-det latin:   0%|          | 0/3 [00:00<?, ?it/s]
+OCR-det latin:  33%|███▎      | 1/3 [00:00<00:00,  7.71it/s]
+OCR-det latin: 100%|██████████| 3/3 [00:00<00:00, 13.18it/s]
+OCR-det latin: 100%|██████████| 3/3 [00:00<00:00, 12.29it/s]
+Table Predict: 0it [00:00, ?it/s]
+Table Predict: 0it [00:00, ?it/s]
+OCR-rec Predict:   0%|          | 0/50 [00:00<?, ?it/s]
+OCR-rec Predict:  96%|█████████▌| 48/50 [00:00<00:00, 255.27it/s]
+OCR-rec Predict: 100%|██████████| 50/50 [00:00<00:00, 224.60it/s]
+Processing pages:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.08s/it]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.08s/it]
+2025-09-02 10:01:51.547 | INFO     | mineru.cli.common:_process_output:156 - local output dir is /tmp/tmp4uo7m_0h/pages_out/p0012/page_0012/ocr
+2025-09-02 10:02:05,858 - mineru.cli - INFO - Salida MinerU (tail):
+Ignore import error when loading sglang.srt.models.torch_native_llama. tensor model parallel group is not initialized
+2025-09-02 10:01:55.412 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:124 - Batch 1/1: 1 pages/1 pages
+2025-09-02 10:01:55.412 | INFO     | mineru.backend.pipeline.pipeline_analyze:batch_image_analyze:187 - gpu_memory: 1536 GB, batch_ratio: 16
+2025-09-02 10:01:55.413 | INFO     | mineru.backend.pipeline.model_init:__init__:137 - DocAnalysis init, this may take some times......
+2025-09-02 10:01:58.201 | INFO     | mineru.backend.pipeline.model_init:__init__:182 - DocAnalysis init done!
+2025-09-02 10:01:58.201 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:64 - model init cost: 2.7886717319488525
+Layout Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.91it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.91it/s]
+MFD Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.30it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.30it/s]
+MFR Predict:   0%|          | 0/2 [00:00<?, ?it/s]
+MFR Predict: 100%|██████████| 2/2 [00:00<00:00,  8.05it/s]
+MFR Predict: 100%|██████████| 2/2 [00:00<00:00,  8.04it/s]
+OCR-det latin:   0%|          | 0/8 [00:00<?, ?it/s]
+OCR-det latin:  12%|█▎        | 1/8 [00:00<00:00,  9.63it/s]
+OCR-det latin:  38%|███▊      | 3/8 [00:00<00:00, 14.65it/s]
+OCR-det latin:  62%|██████▎   | 5/8 [00:00<00:00, 16.30it/s]
+OCR-det latin: 100%|██████████| 8/8 [00:00<00:00, 19.05it/s]
+OCR-det latin: 100%|██████████| 8/8 [00:00<00:00, 17.44it/s]
+Table Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Table Predict: 100%|██████████| 1/1 [00:00<00:00,  2.46it/s]
+Table Predict: 100%|██████████| 1/1 [00:00<00:00,  2.46it/s]
+OCR-rec Predict:   0%|          | 0/53 [00:00<?, ?it/s]
+OCR-rec Predict:  60%|██████    | 32/53 [00:00<00:00, 254.08it/s]
+OCR-rec Predict: 100%|██████████| 53/53 [00:00<00:00, 126.39it/s]
+Processing pages:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.44s/it]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.44s/it]
+2025-09-02 10:02:03.548 | INFO     | mineru.cli.common:_process_output:156 - local output dir is /tmp/tmp4uo7m_0h/pages_out/p0013/page_0013/ocr
+2025-09-02 10:02:06,504 - mineru.cli - INFO - Salida MinerU (tail):
+Ignore import error when loading sglang.srt.models.torch_native_llama. tensor model parallel group is not initialized
+2025-09-02 10:01:55.615 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:124 - Batch 1/1: 1 pages/1 pages
+2025-09-02 10:01:55.616 | INFO     | mineru.backend.pipeline.pipeline_analyze:batch_image_analyze:187 - gpu_memory: 1536 GB, batch_ratio: 16
+2025-09-02 10:01:55.616 | INFO     | mineru.backend.pipeline.model_init:__init__:137 - DocAnalysis init, this may take some times......
+2025-09-02 10:01:58.352 | INFO     | mineru.backend.pipeline.model_init:__init__:182 - DocAnalysis init done!
+2025-09-02 10:01:58.352 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:64 - model init cost: 2.7360668182373047
+Layout Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  2.18it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  2.18it/s]
+MFD Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.33it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.33it/s]
+MFR Predict:   0%|          | 0/32 [00:00<?, ?it/s]
+MFR Predict: 100%|██████████| 32/32 [00:00<00:00, 32.09it/s]
+MFR Predict: 100%|██████████| 32/32 [00:00<00:00, 32.07it/s]
+OCR-det latin:   0%|          | 0/5 [00:00<?, ?it/s]
+OCR-det latin:  20%|██        | 1/5 [00:00<00:00,  9.43it/s]
+OCR-det latin:  60%|██████    | 3/5 [00:00<00:00,  9.93it/s]
+OCR-det latin:  80%|████████  | 4/5 [00:00<00:00,  9.62it/s]
+OCR-det latin: 100%|██████████| 5/5 [00:00<00:00, 10.98it/s]
+Table Predict: 0it [00:00, ?it/s]
+Table Predict: 0it [00:00, ?it/s]
+OCR-rec Predict:   0%|          | 0/69 [00:00<?, ?it/s]
+OCR-rec Predict:  46%|████▋     | 32/69 [00:00<00:00, 280.25it/s]
+OCR-rec Predict:  93%|█████████▎| 64/69 [00:00<00:00, 133.84it/s]
+OCR-rec Predict: 100%|██████████| 69/69 [00:00<00:00, 133.83it/s]
+Processing pages:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.19s/it]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.19s/it]
+2025-09-02 10:02:04.099 | INFO     | mineru.cli.common:_process_output:156 - local output dir is /tmp/tmp4uo7m_0h/pages_out/p0014/page_0014/ocr
+2025-09-02 10:02:08,715 - mineru.cli - INFO - Salida MinerU (tail):
+Ignore import error when loading sglang.srt.models.torch_native_llama. tensor model parallel group is not initialized
+2025-09-02 10:01:58.497 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:124 - Batch 1/1: 1 pages/1 pages
+2025-09-02 10:01:58.498 | INFO     | mineru.backend.pipeline.pipeline_analyze:batch_image_analyze:187 - gpu_memory: 1536 GB, batch_ratio: 16
+2025-09-02 10:01:58.499 | INFO     | mineru.backend.pipeline.model_init:__init__:137 - DocAnalysis init, this may take some times......
+2025-09-02 10:02:01.907 | INFO     | mineru.backend.pipeline.model_init:__init__:182 - DocAnalysis init done!
+2025-09-02 10:02:01.907 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:64 - model init cost: 3.4089488983154297
+Layout Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.76it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.76it/s]
+MFD Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.31it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.31it/s]
+MFR Predict: 0it [00:00, ?it/s]
+MFR Predict: 0it [00:00, ?it/s]
+OCR-det latin:   0%|          | 0/9 [00:00<?, ?it/s]
+OCR-det latin:  11%|█         | 1/9 [00:00<00:00,  8.21it/s]
+OCR-det latin:  33%|███▎      | 3/9 [00:00<00:00, 14.16it/s]
+OCR-det latin:  67%|██████▋   | 6/9 [00:00<00:00, 18.55it/s]
+OCR-det latin:  89%|████████▉ | 8/9 [00:00<00:00, 17.57it/s]
+OCR-det latin: 100%|██████████| 9/9 [00:00<00:00, 17.29it/s]
+Table Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Table Predict: 100%|██████████| 1/1 [00:00<00:00,  2.88it/s]
+Table Predict: 100%|██████████| 1/1 [00:00<00:00,  2.87it/s]
+OCR-rec Predict:   0%|          | 0/40 [00:00<?, ?it/s]
+OCR-rec Predict:  80%|████████  | 32/40 [00:00<00:00, 280.74it/s]
+OCR-rec Predict: 100%|██████████| 40/40 [00:00<00:00, 184.29it/s]
+Processing pages:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.23s/it]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.23s/it]
+2025-09-02 10:02:06.737 | INFO     | mineru.cli.common:_process_output:156 - local output dir is /tmp/tmp4uo7m_0h/pages_out/p0015/page_0015/ocr
+2025-09-02 10:02:08,898 - mineru.cli - INFO - Salida MinerU (tail):
+Ignore import error when loading sglang.srt.models.torch_native_llama. tensor model parallel group is not initialized
+2025-09-02 10:01:58.838 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:124 - Batch 1/1: 1 pages/1 pages
+2025-09-02 10:01:58.839 | INFO     | mineru.backend.pipeline.pipeline_analyze:batch_image_analyze:187 - gpu_memory: 1536 GB, batch_ratio: 16
+2025-09-02 10:01:58.839 | INFO     | mineru.backend.pipeline.model_init:__init__:137 - DocAnalysis init, this may take some times......
+2025-09-02 10:02:02.699 | INFO     | mineru.backend.pipeline.model_init:__init__:182 - DocAnalysis init done!
+2025-09-02 10:02:02.699 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:64 - model init cost: 3.8602101802825928
+Layout Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.66it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.66it/s]
+MFD Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.42it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.42it/s]
+MFR Predict: 0it [00:00, ?it/s]
+MFR Predict: 0it [00:00, ?it/s]
+OCR-det latin:   0%|          | 0/3 [00:00<?, ?it/s]
+OCR-det latin:  33%|███▎      | 1/3 [00:00<00:00,  6.88it/s]
+OCR-det latin: 100%|██████████| 3/3 [00:00<00:00, 10.28it/s]
+OCR-det latin: 100%|██████████| 3/3 [00:00<00:00,  9.79it/s]
+Table Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Table Predict: 100%|██████████| 1/1 [00:00<00:00,  2.91it/s]
+Table Predict: 100%|██████████| 1/1 [00:00<00:00,  2.91it/s]
+OCR-rec Predict:   0%|          | 0/8 [00:00<?, ?it/s]
+OCR-rec Predict: 100%|██████████| 8/8 [00:00<00:00, 164.57it/s]
+Processing pages:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.22s/it]
+Processing pages: 100%|██████████| 1/1 [00:01<00:00,  1.22s/it]
+2025-09-02 10:02:06.925 | INFO     | mineru.cli.common:_process_output:156 - local output dir is /tmp/tmp4uo7m_0h/pages_out/p0017/page_0017/ocr
+2025-09-02 10:02:10,176 - mineru.cli - INFO - Salida MinerU (tail):
+Ignore import error when loading sglang.srt.models.torch_native_llama. tensor model parallel group is not initialized
+2025-09-02 10:01:58.775 | INFO     | mineru.backend.pipeline.pipeline_analyze:doc_analyze:124 - Batch 1/1: 1 pages/1 pages
+2025-09-02 10:01:58.776 | INFO     | mineru.backend.pipeline.pipeline_analyze:batch_image_analyze:187 - gpu_memory: 1536 GB, batch_ratio: 16
+2025-09-02 10:01:58.776 | INFO     | mineru.backend.pipeline.model_init:__init__:137 - DocAnalysis init, this may take some times......
+2025-09-02 10:02:02.695 | INFO     | mineru.backend.pipeline.model_init:__init__:182 - DocAnalysis init done!
+2025-09-02 10:02:02.695 | INFO     | mineru.backend.pipeline.pipeline_analyze:custom_model_init:64 - model init cost: 3.91860032081604
+Layout Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.70it/s]
+Layout Predict: 100%|██████████| 1/1 [00:00<00:00,  1.70it/s]
+MFD Predict:   0%|          | 0/1 [00:00<?, ?it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.34it/s]
+MFD Predict: 100%|██████████| 1/1 [00:00<00:00,  1.34it/s]
+MFR Predict:   0%|          | 0/2 [00:00<?, ?it/s]
+MFR Predict: 100%|██████████| 2/2 [00:00<00:00,  6.21it/s]
+MFR Predict: 100%|██████████| 2/2 [00:00<00:00,  6.18it/s]
+OCR-det latin:   0%|          | 0/26 [00:00<?, ?it/s]
+OCR-det latin:   4%|▍         | 1/26 [00:00<00:03,  8.26it/s]
+OCR-det latin:  12%|█▏        | 3/26 [00:00<00:01, 13.48it/s]
+OCR-det latin:  23%|██▎       | 6/26 [00:00<00:01, 16.17it/s]
+OCR-det latin:  35%|███▍      | 9/26 [00:00<00:00, 18.69it/s]
+OCR-det latin:  46%|████▌     | 12/26 [00:00<00:00, 19.50it/s]
+OCR-det latin:  58%|█████▊    | 15/26 [00:00<00:00, 20.14it/s]
+OCR-det latin:  69%|██████▉   | 18/26 [00:00<00:00, 20.39it/s]
+OCR-det latin:  81%|████████  | 21/26 [00:01<00:00, 20.78it/s]
+OCR-det latin:  92%|█████████▏| 24/26 [00:01<00:00, 20.87it/s]
+OCR-det latin: 100%|██████████| 26/26 [00:01<00:00, 19.29it/s]
+Table Predict: 0it [00:00, ?it/s]
+Table Predict: 0it [00:00, ?it/s]
+OCR-rec Predict:   0%|          | 0/98 [00:00<?, ?it/s]
+OCR-rec Predict:  33%|███▎      | 32/98 [00:00<00:00, 266.08it/s]
+OCR-rec Predict:  65%|██████▌   | 64/98 [00:00<00:00, 266.50it/s]
+OCR-rec Predict:  98%|█████████▊| 96/98 [00:00<00:00, 210.94it/s]
+OCR-rec Predict: 100%|██████████| 98/98 [00:00<00:00, 211.74it/s]
+Processing pages:   0%|          | 0/1 [00:00<?, ?it/s]
+Processing pages: 100%|██████████| 1/1 [00:00<00:00,  1.06it/s]
+Processing pages: 100%|██████████| 1/1 [00:00<00:00,  1.06it/s]
+2025-09-02 10:02:08.237 | INFO     | mineru.cli.common:_process_output:156 - local output dir is /tmp/tmp4uo7m_0h/pages_out/p0016/page_0016/ocr

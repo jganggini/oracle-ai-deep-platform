@@ -1,57 +1,67 @@
-# test-ocr.ps1
+# test-performance.ps1 — Benchmark simplificado
 
-# Directorio base del script
+$baseUrl   = "http://localhost:8001"
 $scriptRoot = $PSScriptRoot
-
-# --- Configuración ---
-$inputFile = Join-Path $scriptRoot "test-factura.pdf" # https://www.gob.mx/cms/uploads/attachment/file/764689/84_2Tri_2022_COMPROBACION.pdf
+$inputFile = Join-Path $scriptRoot "test-factura.pdf"
 $outputDir = Join-Path $scriptRoot "result"
-$perWorker = 896  # MB por worker (opcional). Ajusta a 1024 si priorizas estabilidad
-# -------------------
+$runs      = 3
 
-# Verificar que el archivo de entrada exista
-if (-not (Test-Path $inputFile)) {
-    Write-Error "El archivo de entrada no se encuentra en: $inputFile"
-    exit 1
-}
-
-# Crear el directorio de salida si no existe
-if (-not (Test-Path $outputDir)) {
-    New-Item -ItemType Directory -Path $outputDir | Out-Null
-}
+if (-not (Test-Path $inputFile)) { Write-Error "No existe: $inputFile"; exit 1 }
+if (-not (Test-Path $outputDir)) { New-Item -ItemType Directory -Path $outputDir | Out-Null }
 
 $scenarios = @(
-    @{ label = "2GB/10x"; vram = 2048; conc = 10; pref = "ocr_2GB_10x" },
-    @{ label = "4GB/5x";  vram = 4096; conc = 5;  pref = "ocr_4GB_5x" },
-    @{ label = "8GB/2x";  vram = 8192; conc = 2;  pref = "ocr_8GB_2x" }
+	@{ label = "per_worker=512 cap=6";  per_worker = 512;  cap = 6;  pref = "ocr_512mb_cap6" },
+	@{ label = "per_worker=768 cap=6";  per_worker = 768;  cap = 6;  pref = "ocr_768mb_cap6" },
+	@{ label = "per_worker=1024 cap=6"; per_worker = 1024; cap = 6;  pref = "ocr_1024mb_cap6" }
 )
+
+function Test-IsZip($path) {
+	try {
+		$bytes = Get-Content -LiteralPath $path -Encoding Byte -TotalCount 2
+		return ($bytes -and $bytes.Length -ge 2 -and $bytes[0] -eq 80 -and $bytes[1] -eq 75) # 'PK'
+	} catch { return $false }
+}
 
 $results = @()
 
 foreach ($s in $scenarios) {
-    for ($i = 1; $i -le 3; $i++) {
-        $outputFile = Join-Path $outputDir ("{0}_run{1}.zip" -f $s.pref, $i)
-        $sw = [System.Diagnostics.Stopwatch]::StartNew()
+	for ($i = 1; $i -le $runs; $i++) {
+		$out = Join-Path $outputDir ("{0}_run{1}.zip" -f $s.pref, $i)
+		Write-Host "Escenario '$($s.label)' Run #$i..."
+		$sw = [System.Diagnostics.Stopwatch]::StartNew()
 
-        Write-Host "Ejecutando escenario '$($s.label)' (Run #$i)..."
+		curl.exe -sS -X POST "$baseUrl/ocr" `
+			-F ("file=@" + $inputFile) `
+			-F ("per_worker_mb=" + $s.per_worker) `
+			-F ("workers_cap=" + $s.cap) `
+			--output $out | Out-Null
 
-        curl.exe -sS -X POST "http://129.151.111.213:8001/ocr" `
-            -F ("file=@" + $inputFile) `
-            -F ("vram_limit=" + $s.vram) `
-            -F ("concurrency=" + $s.conc) `
-            -F ("per_worker_mb=" + $perWorker) `
-            --output $outputFile | Out-Null
+		$sw.Stop()
 
-        $sw.Stop()
-
-        $results += [PSCustomObject]@{
-            Escenario = $s.label
-            Run       = $i
-            Tiempo_s  = [Math]::Round($sw.Elapsed.TotalSeconds, 2)
-            Salida    = $outputFile
-        }
-    }
+		if (Test-IsZip $out) {
+			$results += [PSCustomObject]@{
+				Escenario    = $s.label
+				Run          = $i
+				PerWorker_MB = $s.per_worker
+				Cap          = $s.cap
+				Tiempo_s     = [Math]::Round($sw.Elapsed.TotalSeconds, 2)
+				Salida       = $out
+			}
+		} else {
+			Write-Warning "Falló $($s.label) Run #$i (no ZIP)."
+		}
+	}
 }
 
-Write-Host "`n--- Resultados del Benchmark ---"
-$results | Format-Table Escenario, Run, Tiempo_s, Salida -AutoSize
+Write-Host "`n--- Resultados del Benchmark (detalle) ---"
+$results | Format-Table Escenario, Run, PerWorker_MB, Cap, Tiempo_s, Salida -AutoSize
+
+Write-Host "`n--- Promedio por escenario ---"
+$summary = $results | Group-Object Escenario | ForEach-Object {
+	[PSCustomObject]@{
+		Escenario  = $_.Name
+		Runs_ok    = $_.Count
+		Promedio_s = [Math]::Round((($_.Group | Measure-Object Tiempo_s -Average).Average), 2)
+	}
+}
+$summary | Sort-Object Promedio_s | Format-Table Escenario, Runs_ok, Promedio_s -AutoSize

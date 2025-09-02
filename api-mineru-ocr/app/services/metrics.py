@@ -4,13 +4,12 @@ import threading
 import psutil
 from prometheus_client import Counter, Gauge, generate_latest, CONTENT_TYPE_LATEST
 
-# Asumimos GPU siempre disponible (simplifica la lógica y evita ramas muertas)
-import pynvml  # type: ignore
-pynvml.nvmlInit()
-
-# =============================
-# Métricas expuestas (Grafana)
-# =============================
+try:
+    import pynvml  # type: ignore
+    _NVML_AVAILABLE = True
+except Exception:
+    pynvml = None  # type: ignore
+    _NVML_AVAILABLE = False
 
 # Sistema
 SYS_CPU = Gauge("system_cpu_usage_percent", "CPU %")
@@ -26,7 +25,7 @@ OCR_INFLIGHT = Gauge("ocr_inflight_requests", "Requests en proceso")
 PAGES_ACTIVE = Gauge("ocr_pages_in_progress", "Páginas en procesamiento")
 BYTES_UP = Counter("ocr_bytes_uploaded_total", "Bytes subidos")
 
-# Último documento procesado (valor = duración en segundos)
+# Último documento procesado
 DOC_LAST = Gauge(
     "ocr_last_document_seconds",
     "Duración del último documento (s)",
@@ -40,20 +39,23 @@ def start_metrics_collector() -> None:
 
 
 def init_metric_series() -> None:
-    # Inicializa series para evitar "No data" en Grafana
     BYTES_UP.inc(0)
     OCR_INFLIGHT.set(0)
     PAGES_ACTIVE.set(0)
 
-    # Inicializa métricas por GPU
-    count = pynvml.nvmlDeviceGetCount()
-    for i in range(count):
-        idx = str(i)
-        h = pynvml.nvmlDeviceGetHandleByIndex(i)
-        m = pynvml.nvmlDeviceGetMemoryInfo(h)
-        GPU_USED.labels(index=idx).set(0)
-        GPU_TOTAL.labels(index=idx).set(m.total)
-        GPU_USED_PCT.labels(index=idx).set(0)
+    if _NVML_AVAILABLE:
+        try:
+            pynvml.nvmlInit()
+            count = pynvml.nvmlDeviceGetCount()
+            for i in range(count):
+                idx = str(i)
+                h = pynvml.nvmlDeviceGetHandleByIndex(i)
+                m = pynvml.nvmlDeviceGetMemoryInfo(h)
+                GPU_USED.labels(index=idx).set(0)
+                GPU_TOTAL.labels(index=idx).set(m.total)
+                GPU_USED_PCT.labels(index=idx).set(0)
+        except Exception:
+            pass
 
 
 def get_metrics_latest() -> bytes:
@@ -66,22 +68,30 @@ def get_metrics_content_type() -> str:
 
 def _loop() -> None:
     while True:
-        # CPU / RAM
         cpu_pct = psutil.cpu_percent(interval=None)
         ram_pct = psutil.virtual_memory().percent
         SYS_CPU.set(cpu_pct)
         SYS_RAM.set(ram_pct)
 
-        # GPU por índice – porcentaje preciso usado/total
-        count = pynvml.nvmlDeviceGetCount()
-        for i in range(count):
-            idx = str(i)
-            h = pynvml.nvmlDeviceGetHandleByIndex(i)
-            m = pynvml.nvmlDeviceGetMemoryInfo(h)
-            used = float(m.used)
-            total = float(m.total) if m.total else 0.0
-            GPU_USED.labels(index=idx).set(used)
-            GPU_TOTAL.labels(index=idx).set(total)
-            GPU_USED_PCT.labels(index=idx).set((used / total) * 100.0 if total > 0 else 0.0)
+        if _NVML_AVAILABLE:
+            try:
+                try:
+                    pynvml.nvmlInit()
+                except Exception:
+                    pass
+                count = pynvml.nvmlDeviceGetCount()
+                for i in range(count):
+                    idx = str(i)
+                    h = pynvml.nvmlDeviceGetHandleByIndex(i)
+                    m = pynvml.nvmlDeviceGetMemoryInfo(h)
+                    used = float(m.used)
+                    total = float(m.total) if m.total else 0.0
+                    GPU_USED.labels(index=idx).set(used)
+                    GPU_TOTAL.labels(index=idx).set(total)
+                    GPU_USED_PCT.labels(index=idx).set((used / total) * 100.0 if total > 0 else 0.0)
+            except Exception:
+                pass
 
         time.sleep(5)
+
+
