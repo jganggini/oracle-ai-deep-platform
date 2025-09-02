@@ -103,7 +103,7 @@ docker build -t mineru-ocr:latest -f Dockerfile.mineru .
   - Núcleos CPU: `cpu_cores`
   - Límite superior opcional: `workers_cap` (form-data) o `MINERU_WORKERS_CAP`
 
-Fórmulas:
+- Fórmulas:
 
   ```math
   \text{vram\_per\_proc} = \text{per\_worker\_mb} + \text{MINERU\_VRAM\_OVERHEAD\_MB}
@@ -117,40 +117,37 @@ Fórmulas:
   ```
 
   ```math
-  \text{prelim} = \max\big(1,\; \min(\text{allowed\_by\_vram},\; \text{cpu\_cores})\big)
+  \text{prelim} = \max\left(1,\; \min\left(\text{allowed\_by\_vram}
+  \text{cpu\_cores}\right)\right)
   ```
 
   ```math
   \text{max\_workers} = \begin{cases}
-  \min(\text{prelim},\; \text{cap}) & \text{→ si cap existe} \\
+  \min\left(\text{prelim},\; \text{cap}\right) & \text{→ si cap existe} \\
   \text{prelim} & \text{→ en otro caso}
   \end{cases}
   ```
 
-Ejemplo:
+- Ejemplo:
 
-```math
-\text{total\_vram\_mb}=24576,\; \text{per\_worker\_mb}=1536
-```
-```math
-\text{MINERU\_VRAM\_OVERHEAD\_MB}=512
-```
-```math
-\text{vram\_per\_proc}=1536+512=2048
-```
-```math
-\text{allowed\_by\_vram}=\left\lfloor \dfrac{24576}{2048} \right\rfloor=12
-```
-```math
-\text{cpu\_cores}=8 \Rightarrow \text{prelim}=\min(12,8)=8
-```
-```math
-\text{cap}=6 \Rightarrow \text{max\_workers}=\min(8,6)=6
-```
-
-💡 `Notas`:
-- `MINERU_RAMP_DELAY_MS` solo escalona los lanzamientos (suaviza picos); no cambia `max_workers`.
-- Si `GPU_ENABLED=false`, se fuerza `allowed_by_vram = 1` y la concurrencia queda limitada por CPU y `cap`.
+  ```math
+  \text{total\_vram\_mb}=24576,\; \text{per\_worker\_mb}=1536
+  ```
+  ```math
+  \text{MINERU\_VRAM\_OVERHEAD\_MB}=512
+  ```
+  ```math
+  \text{vram\_per\_proc}=1536+512=2048
+  ```
+  ```math
+  \text{allowed\_by\_vram}=\left\lfloor \dfrac{24576}{2048} \right\rfloor=12
+  ```
+  ```math
+  \text{cpu\_cores}=8 \Rightarrow \text{prelim}=\min\left(12,8\right)=8
+  ```
+  ```math
+  \text{cap}=6 \Rightarrow \text{max\_workers}=\min\left(8,6\right)=6
+  ```
 
 #### Paso 3: ☸️ Despliegue en Kubernetes (OCI OKE)
 
