@@ -20,16 +20,15 @@ GPU_USED = Gauge("gpu_memory_used_bytes", "GPU mem used (bytes)", ["index"])
 GPU_TOTAL = Gauge("gpu_memory_total_bytes", "GPU mem total (bytes)", ["index"])
 GPU_USED_PCT = Gauge("gpu_memory_used_percent", "GPU mem usada %", ["index"])
 
-# OCR flujo
+# OCR flujo (a nivel de documento)
 OCR_INFLIGHT = Gauge("ocr_inflight_requests", "Requests en proceso")
-PAGES_ACTIVE = Gauge("ocr_pages_in_progress", "Páginas en procesamiento")
 BYTES_UP = Counter("ocr_bytes_uploaded_total", "Bytes subidos")
 
 # Último documento procesado
 DOC_LAST = Gauge(
     "ocr_last_document_seconds",
     "Duración del último documento (s)",
-    ["name", "pages", "processed_at", "vram", "concurrency"],
+    ["name", "pages", "processed_at"],
 )
 
 
@@ -41,7 +40,6 @@ def start_metrics_collector() -> None:
 def init_metric_series() -> None:
     BYTES_UP.inc(0)
     OCR_INFLIGHT.set(0)
-    PAGES_ACTIVE.set(0)
 
     if _NVML_AVAILABLE:
         try:

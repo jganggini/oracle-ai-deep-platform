@@ -7,7 +7,7 @@ from .config import get_settings
 from .services.metrics import start_metrics_collector, get_metrics_latest, get_metrics_content_type, init_metric_series
 from fastapi import Response
 import asyncio as _asyncio
-from fastapi import UploadFile, File, Form, Request
+from fastapi import UploadFile, File, Request
 from .services.ocr import process_ocr
 from pathlib import Path
 
@@ -67,10 +67,8 @@ def create_app() -> FastAPI:
     async def ocr_endpoint(
         request: Request,
         file: UploadFile | None = File(None),
-        per_worker_mb: int | None = Form(None, ge=256),
-        workers_cap: int | None = Form(None, ge=1),
     ):
-        return await process_ocr(request, file, per_worker_mb, workers_cap)
+        return await process_ocr(request, file)
 
     return app
 

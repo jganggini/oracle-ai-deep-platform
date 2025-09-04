@@ -44,7 +44,8 @@ CMD ["python3", "-m", "uvicorn", "app.start_server:app", "--host", "0.0.0.0", "-
 ENV OMP_NUM_THREADS=1 \
     MKL_NUM_THREADS=1 \
     OPENBLAS_NUM_THREADS=1 \
-    NUMEXPR_NUM_THREADS=1
+    NUMEXPR_NUM_THREADS=1 \
+    SGLANG_LOG_LEVEL=ERROR
 
 # Persistencia por defecto del código y del log en /app
 VOLUME ["/app"]

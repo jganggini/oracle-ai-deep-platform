@@ -24,12 +24,12 @@ spec:
         resources:
           requests:
             memory: "64Gi"
-            cpu: "4000m"
-            nvidia.com/gpu: 1
+            cpu: "96000m"
+            nvidia.com/gpu: 2
           limits:
             memory: "128Gi"
-            cpu: "8000m"
-            nvidia.com/gpu: 1
+            cpu: "192000m"
+            nvidia.com/gpu: 2
         livenessProbe:
           httpGet:
             path: /health
